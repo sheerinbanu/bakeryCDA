@@ -63,10 +63,15 @@
             </form>
 
             <h2>
-                Welcome to Bakery General Page
+                Welcome
+                <span sec:authorize="isAuthenticated()"></span>
+
+                <span sec:authentication="name" style="color: mediumvioletred "></span>
+
+                               to Bakery !
 
             </h2>
-            <span sec:authentication="authorities[0]"></span>
+
 
         </div>
 
