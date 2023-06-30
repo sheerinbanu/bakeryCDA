@@ -18,13 +18,13 @@ public class ProductController {
     @Autowired
     private ProductService ps;
 
-    @GetMapping("/products")
+    @GetMapping("/bakingPans")
     public String showProducts(Model model) {
         return ps.getListProduct(model);
     }
 
 
-    @PostMapping("/products")
+    @PostMapping("/bakingPans")
     public String addSelectToCart(Selection selection, User user, Product product, Authentication authentication, Model model, BindingResult bindingResult) {
         return ps.submitSelectionForm(selection, user, product, authentication, model, bindingResult);
     }
