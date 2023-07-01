@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<title>baking pans Products</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+        <img alt="cake" height="50px" src="../images/bakeLogo.PNG" width="50px">
+        <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                       data-bs-toggle="dropdown"
+                       href="#" role="button">Products</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/productGeneralPage">All categories</a>
+                        <a class="dropdown-item" href="/bakingPans">Baking pans</a>
+                        <span class="visually-hidden">(current)</span>
+                        <a class="dropdown-item" href="/foodDecoration">Food decoration</a>
+                        <a class="dropdown-item" href="/chocolates">Chocolates</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <button class="btn btn-outline-danger my-2 my-sm-0">
+        <a onclick="document.forms['logoutForm'].submit()">Log out</a>
+    </button>
+</nav>
+</header>
+<body>
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
+
+            <form id="logoutForm" method="POST" th:action="@{/logout}">
+                <input type="hidden" name="${_csrf.parameterName}"
+                       value="${_csrf.token}" />
+            </form>
+
+            <h2 style="text-align: center">
+                Hello
+                <span sec:authorize="isAuthenticated()"></span>
+                <span sec:authentication="name" style="color: mediumvioletred "></span>
+                !
+            </h2>
+
+        </div>
+
+    </div>
+</div>
+<div class="container py-5">
+
+    <div class="row justify-content-around">
+
+        <div class="card mb-3" style="width: 18rem;" th:each="product: ${products}">
+
+            <h3 class="card-header" th:text="${product.name}"></h3>
+
+            <div class="card-body">
+                <div class="row justify-content-start">
+                    <div class="col-4" th:text="${product.unit_price}"></div>
+                    <div class="col-7">EUR</div>
+                </div>
+            </div>
+            <img th:src="${product.picture}" width="100%" height="100%" />
+            <div class="card-body">
+                <p class="card-text" th:text="${product.description}"></p>
+            </div>
+
+            <form method="POST" class="form-sign-in" th:object="${selectionForm}"
+                  th:action="@{/bakingPans}">
+
+                <div class="card-body">
+
+                    <div class="form-group pb-3">
+                        <label>Quantity</label>
+                        <select name="quantity">
+                            <option th:each="quantity :${quantityList}"
+                                    th:text="${quantity}"></option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="btn btn-danger">add to
+                            cart</button>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script crossorigin="anonymous"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+<footer class="bg-light text-center">
+    <div class="container p-3 pb-0">
+        <section class="">
+            <form action="">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-auto">
+                        <p class="pt-2">
+                            <strong>Sign up for our newsletter</strong>
+                        </p>
+                    </div>
+                    <div class="col-md-5 col-12">
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input class="form-control" id="form5Example27" type="email"/>
+                            <label class="form-label" for="form5Example27">Email address</label>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary mb-4" type="submit">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">BAKE.com</a>
+    </div>
+</footer>
+</html>
