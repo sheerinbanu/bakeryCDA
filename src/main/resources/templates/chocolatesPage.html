@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>chocolates Products</title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
@@ -43,9 +45,10 @@
                 </li>
             </ul>
         </div>
+        <div><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></div>
     </div>
     <button class="btn btn-outline-danger my-2 my-sm-0">
-        <a onclick="document.forms['logoutForm'].submit()">Log out</a>
+        <a onclick="document.forms['logoutForm'].submit()"><i class="fa fa-sign-out" aria-hidden="true"></a>
     </button>
 </nav>
 </header>
