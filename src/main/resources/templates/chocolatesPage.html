@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns:th="http://www.thymeleaf.org">
-<meta charset="UTF-8">
-<title>chocolates Products</title>
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<head>
+    <meta charset="UTF-8">
+    <title>chocolates Products</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
@@ -56,8 +57,8 @@
         <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
 
             <form id="logoutForm" method="POST" th:action="@{/logout}">
-                <input type="hidden" name="${_csrf.parameterName}"
-                       value="${_csrf.token}" />
+                <input name="${_csrf.parameterName}" type="hidden"
+                       value="${_csrf.token}"/>
             </form>
 
             <h2 style="text-align: center">
@@ -85,13 +86,13 @@
                     <div class="col-7">EUR</div>
                 </div>
             </div>
-            <img th:src="${product.picture}" width="100%" height="100%" />
+            <img height="100%" th:src="${product.picture}" width="100%"/>
             <div class="card-body">
                 <p class="card-text" th:text="${product.description}"></p>
             </div>
 
-            <form method="POST" class="form-sign-in" th:object="${selectionForm}"
-                  th:action="@{/chocolates}">
+            <form class="form-sign-in" method="POST" th:action="@{/chocolates}"
+                  th:object="${selectionForm}">
 
                 <div class="card-body">
 
@@ -103,8 +104,9 @@
                         </select>
                     </div>
                     <div class="row">
-                        <button type="submit" class="btn btn-danger">add to
-                            cart</button>
+                        <button class="btn btn-danger" type="submit">add to
+                            cart
+                        </button>
                     </div>
 
                 </div>
@@ -113,9 +115,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 
 <script crossorigin="anonymous"
