@@ -18,4 +18,6 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_category", referencedColumnName= "id_category", insertable = true, updatable = true)
     private Category category;
+
+
 }

@@ -39,11 +39,8 @@ public class ProductService {
     Double unit_price;
     double finalPrice;
 
-    public Optional<Product> getProduct(final int id){
-        return pr.findById(id);
-    }
 
-    public Iterable<Product> getAllProduct() {
+    public List<Product> getAllProduct() {
         return pr.findAll();
     }
 
@@ -68,5 +65,24 @@ public class ProductService {
         return "redirect:/products";
     }
 
+    public List<Product> getProductsByCategory(int categoryId) {
+
+        List<Product> allProducts = getAllProduct();
+        List<Product> categoryProducts = new ArrayList<>();
+
+        for (Product product : allProducts) {
+            if (product.getCategory().getId_category() == categoryId) {
+                categoryProducts.add(product);
+            }
+        }
+
+        return categoryProducts;
+    }
+
+
 
 }
+
+
+
+
