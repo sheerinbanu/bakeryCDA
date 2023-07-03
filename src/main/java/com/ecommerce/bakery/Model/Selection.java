@@ -18,4 +18,8 @@ public class Selection {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_product", referencedColumnName= "id_product", insertable = true, updatable = true)
     private Product product;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_cart", referencedColumnName= "id_cart", insertable = true, updatable = true)
+    private Cart cart;
 }

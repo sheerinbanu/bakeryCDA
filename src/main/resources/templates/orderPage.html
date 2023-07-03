@@ -2,7 +2,7 @@
 <html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
-<title>chocolates Products</title>
+<title>order</title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
@@ -43,78 +43,64 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
+                <li class="nav-item"><a class="nav-link" href="/order_history">Order History</a>
+                </li>
             </ul>
         </div>
-        <div><a href="#"><i aria-hidden="true" class="fa fa-shopping-cart"></i></a></div>
+        <div><a href="/cart"><i aria-hidden="true" class="fa fa-shopping-cart"></i></a></div>
     </div>
     <button class="btn btn-outline-danger my-2 my-sm-0">
-        <a onclick="document.forms['logoutForm'].submit()"><i aria-hidden="true" class="fa fa-sign-out"></i></a>
+        <a onclick="document.forms['logoutForm'].submit()"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
     </button>
 </nav>
 </header>
 <body>
 <div class="container">
-
     <div class="row justify-content-center">
-
         <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
 
             <form id="logoutForm" method="POST" th:action="@{/logout}">
                 <input name="${_csrf.parameterName}" type="hidden"
                        value="${_csrf.token}"/>
             </form>
-
-            <h2 style="text-align: center">
-                Hello
-                <span sec:authorize="isAuthenticated()"></span>
-                <span sec:authentication="name" style="color: mediumvioletred "></span>
-                !
+            <h2>
+                Bakery <span sec:authentication="authorities[0]"></span>
             </h2>
-
-        </div>
-
-    </div>
-</div>
-<div class="container py-5">
-
-    <div class="row justify-content-around">
-
-        <div class="card mb-3" style="width: 18rem;" th:each="product: ${products}">
-
-            <h3 class="card-header" th:text="${product.name}"></h3>
-
-            <div class="card-body">
-                <div class="row justify-content-start">
-                    <div class="col-4" th:text="${product.unit_price}"></div>
-                    <div class="col-7">EUR</div>
-                </div>
-            </div>
-            <img height="100%" th:src="${product.picture}" width="100%"/>
-            <div class="card-body">
-                <p class="card-text" th:text="${product.description}"></p>
-            </div>
-            <form class="form-sign-in" method="POST" th:action="@{/chocolates}"
-                  th:object="${selectionForm}">
-                <div class="card-body">
-                    <div class="form-group pb-3">
-                        <label for="name">Quantity</label>
-                        <select name="quantity">
-                            <option th:each="quantity :${quantityList}"
-                                    th:text="${quantity}"></option>
-                        </select>
-                    </div>
-                    <div class="row">
-                        <button class="btn btn-danger" type="submit">add to
-                            cart
-                        </button>
-                    </div>
-                </div>
-            </form>
-
         </div>
     </div>
 </div>
-
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-12 mx-0">
+                <table class="table bg-white rounded border table-striped table-dark">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="order: ${orders}">
+                    <tr>
+                        <th scope="row" th:text="${order.id_order}"></th>
+                        <td th:text="${order.order_date}"></td>
+                        <td th:text="${order.cart.total_price}"></td>
+                        <td th:text="${order.cart.user.email}"></td>
+                        <td th:text="${order.validate} ? 'VALIDATED' : 'ORDER IN PROCESS'"/>
+                        <td>
+                            <a class="btn btn-success" role="button" th:href="@{'/order_history/' + ${order.id_order}}">View</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
 
 <script crossorigin="anonymous"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
