@@ -1,33 +1,25 @@
 package com.ecommerce.bakery.Service;
 
-import com.ecommerce.bakery.Model.Category;
+import com.ecommerce.bakery.Model.Product;
+import com.ecommerce.bakery.Model.Selection;
 import com.ecommerce.bakery.Model.User;
 import com.ecommerce.bakery.Repository.ProductRepository;
 import lombok.Data;
-import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import com.ecommerce.bakery.Model.Product;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import com.ecommerce.bakery.Model.Selection;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @Data
 public class ProductService {
-    @Autowired
-    private ProductRepository pr;
-
-    @Autowired
-    private UserService us;
-
-    @Autowired
-    private SelectionService ss;
     static List<Integer> quantityList = null;
+
     static {
         quantityList = new ArrayList<>();
         quantityList.add(1);
@@ -36,9 +28,15 @@ public class ProductService {
         quantityList.add(4);
         quantityList.add(5);
     }
+
     Double unit_price;
     double finalPrice;
-
+    @Autowired
+    private ProductRepository pr;
+    @Autowired
+    private UserService us;
+    @Autowired
+    private SelectionService ss;
 
     public List<Product> getAllProduct() {
         return pr.findAll();
@@ -58,29 +56,30 @@ public class ProductService {
         return "products";
     }
 
-    public String submitSelectionForm(@ModelAttribute("selectionForm") Selection selection, User user, Product product, Authentication authentication, Model model, BindingResult bindingResult){
-        int currentUserId = us.findByUsername(authentication.getName()).getId_user();
-        finalPrice = (unit_price * selection.getQuantity());
-        ss.insertSelection(selection);
-        return "redirect:/products";
-    }
-
     public List<Product> getProductsByCategory(int categoryId) {
-
         List<Product> allProducts = getAllProduct();
         List<Product> categoryProducts = new ArrayList<>();
-
         for (Product product : allProducts) {
             if (product.getCategory().getId_category() == categoryId) {
                 categoryProducts.add(product);
             }
         }
-
         return categoryProducts;
     }
 
+    public String submitSelectionForm(@ModelAttribute("selectionForm") Selection selection, User user, Product product, Authentication authentication, Model model, BindingResult bindingResult) {
+        int currentUserId = us.findByUsername(authentication.getName()).getId_user();
+        if (product == null) {
+            // Handle the case where the product is null (you can return an error message, redirect, or perform other appropriate actions)
+            return "redirect:/errorPage";
+        }
+        double finalPrice = (product.getUnit_price() * selection.getQuantity());
 
-
+        selection.setTotal(finalPrice);
+        selection.setId_user(currentUserId);
+        ss.insertSelection(selection);
+        return "redirect:/productGeneralPage";
+    }
 }
 
 

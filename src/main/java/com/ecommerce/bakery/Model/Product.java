@@ -12,7 +12,7 @@ public class Product {
     private int id_product;
     private String name;
     private String description;
-    private Double unit_price;
+    private double unit_price;
     private String picture;
 
     @ManyToOne(fetch = FetchType.LAZY)

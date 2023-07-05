@@ -13,10 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -37,6 +39,9 @@ public class CartService {
     @Autowired
     private CartRepository cr;
 
+    @Autowired
+    private DataSource dataSource;
+
     public Optional<Cart> getCart(final int id) {
         return cr.findById(id);
     }
@@ -53,30 +58,39 @@ public class CartService {
         cr.save(Cart);
     }
 
-    public String getSelection(Model model, User user, Authentication authentication) throws Exception {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bakery?useSSL=false", "root", "");
-        Statement statement = connection.createStatement();
-        ResultSet result = statement.executeQuery("SELECT SUM(total) FROM selection WHERE id_cart is null ");
 
-        int currentUserId = us.findByUsername(authentication.getName()).getId_user();
-        ArrayList<Selection> list = new ArrayList<Selection>();
-        double sum = 0;
-        for (Selection selection : ss.getAllSelection()) {
-            if (selection.getCart() == null && selection.getId_user() == currentUserId) {
-                list.add(selection);
+    public String getSelection(Model model, User user, Authentication authentication) throws Exception {
+        try (Connection con = dataSource.getConnection()) {
+            String query = "SELECT SUM(total) FROM selection WHERE id_cart IS NULL";
+            PreparedStatement statement = con.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            double sum = 0;
+            if (resultSet.next()) {
+                sum = resultSet.getDouble(1);
+                System.out.println(sum);
             }
+
+            // Format sum to two decimal places
+            DecimalFormat df = new DecimalFormat("#.##");
+            sum = Double.parseDouble(df.format(sum));
+
+            int currentUserId = us.findByUsername(authentication.getName()).getId_user();
+            ArrayList<Selection> list = new ArrayList<>();
+            for (Selection s : ss.getAllSelection()) {
+                if (s.getCart() == null && s.getId_user() == currentUserId) {
+                    list.add(s);
+                }
+            }
+            model.addAttribute("selections", list);
+            model.addAttribute("person", us.findByUsername(authentication.getName()));
+            model.addAttribute("finalPrice", sum);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
         }
-        model.addAttribute("selections", list);
-        model.addAttribute("person", us.findByUsername(authentication.getName()));
-        while (result.next()) {
-            sum = 0;
-            double c = result.getInt(1);
-            System.out.println(result.getInt(1));
-            sum = sum + c;
-        }
-        model.addAttribute("finalPrice", sum);
         return "cartPage";
     }
+
 
     public String submitCartForm(@ModelAttribute("cartForm") Cart cart, Order order, Selection selection, User user, Authentication authentication, Model model, BindingResult bindingResult) {
         LocalDateTime myDateObj = LocalDateTime.now();

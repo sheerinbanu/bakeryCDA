@@ -102,6 +102,7 @@
                             <option th:each="quantity :${quantityList}"
                                     th:text="${quantity}"></option>
                         </select>
+                        <input type="hidden" name="product" th:value="${product.id_product}" >
                     </div>
                     <div class="row">
                         <button class="btn btn-danger" type="submit">add to

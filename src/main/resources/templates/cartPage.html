@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="UTF-8">
 <title>cart</title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
 </head>
+<header>
 <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
         <img alt="cake" height="50px" src="../images/bakeLogo.PNG" width="50px">
@@ -48,43 +49,29 @@
         <div><a href="/cart"><i aria-hidden="true" class="fa fa-shopping-cart"></i></a></div>
     </div>
     <button class="btn btn-outline-danger my-2 my-sm-0">
-        <a onclick="document.forms['logoutForm'].submit()"><i aria-hidden="true" class="fa fa-sign-out"></a>
+        <a onclick="document.forms['logoutForm'].submit()"><i aria-hidden="true" class="fa fa-sign-out"></i></a>
     </button>
 </nav>
 </header>
 <body>
-
 <div class="container">
-
     <div class="row justify-content-center">
-
         <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
-
             <form id="logoutForm" method="POST" th:action="@{/logout}">
-                <input name="${_csrf.parameterName}" type="hidden"
-                       value="${_csrf.token}"/>
+                <input type="hidden" name="${_csrf.parameterName}"
+                       value="${_csrf.token}" />
             </form>
-
-            <h2>
-                Bakery <span sec:authentication="authorities[0]"></span>
-
-            </h2>
-
         </div>
-
     </div>
 </div>
-
-<section style="background-color:rgb(68,110,155)">
-
+<section style="background-color: #eee;">
     <div class="container py-5">
-
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-md-9">
-                    <div class="ibox">
-                        <div class="ibox-title">
-                            <h5>your cart</h5>
+                    <div class="box">
+                        <div class="box-title">
+                            <h5>Selection dans votre Panier</h5>
                         </div>
                         <div class="box-content" th:each="selection: ${selections}">
                             <div class="table-responsive">
@@ -93,24 +80,27 @@
                                     <tr>
                                         <td width="90">
                                             <div class="cart-product-imitation">
-                                                <img height="110%" th:src="${selection.product.picture}"
-                                                     width="75%">
+                                                <img th:src="${selection.product.picture}" width="75%"
+                                                     height="110%">
                                             </div>
                                         </td>
                                         <td class="desc">
                                             <h3>
-                                                <a class="text-navy" href="#"
+                                                <a href="#" class="text-navy"
                                                    th:text="${selection.product.name}"></a>
                                             </h3>
-                                            <p class="small" th:text="${selection.product.description}"></p>
                                             <div class="m-t-sm">
-                                                <a class="btn btn-primary pull-right"
+                                                <a type="submit"
                                                    th:href="@{'/cart/' + ${selection.id_selection}}"
-                                                   type="submit"> delete</a>
+                                                   class="btn btn-primary pull-right"> Supprimer la
+                                                    Selection</a>
                                             </div>
                                         </td>
-                                        <td><input class="form-control"
-                                                   disabled th:value="${selection.quantity}"></td>
+                                        <td>
+                                            <s class="small text-muted" th:text="${selection.product.unit_price}"></s>
+                                        </td>
+                                        <td><input th:value="${selection.quantity}"
+                                                   class="form-control" disabled></td>
                                         <td>
                                             <h4 th:text="${selection.total}"></h4>
                                             <h5>€</h5>
@@ -120,39 +110,43 @@
                                 </table>
                             </div>
                         </div>
-                        <form class="form-sign-in" method="POST" th:action="@{/cart}" th:object="${cartForm}">
-                            <input name="user" th:value="${person.id_user}" type="hidden">
-                            <input name="total_price" th:value="${finalPrice}" type="hidden">
+                        <form method="POST" class="form-sign-in" th:object="${cartForm}" th:action="@{/cart}">
+                            <input type="hidden" name="user" th:value="${person.id_user}">
+                            <input type="hidden" name="total_price" th:value="${finalPrice}">
                             <div class="box-content">
-                                <button class="btn btn-primary pull-right" type="submit">
-                                    <i class="fa fa fa-shopping-cart"></i> Order
+                                <button type="submit" class="btn btn-primary pull-right">
+                                    <i class="fa fa fa-shopping-cart"></i> Commander
                                 </button>
-                                <a class="btn btn-white" href="/products"><i
-                                        class="fa fa-arrow-left"></i> Continue shopping</a>
+                                <a href="/products" class="btn btn-white"><i
+                                        class="fa fa-arrow-left"></i> Continuer Achat</a>
                             </div>
                         </form>
+
                     </div>
                 </div>
+
                 <div class="col-md-3">
                     <div class="box">
                         <div class="box-title">
-                            <h5>Cart recap</h5>
+                            <h5>Résumé du Panier</h5>
                         </div>
                         <div class="box-content">
-                            <span> Total in Euro € </span>
+                            <span> Total en Euro € </span>
                             <h2 class="font-bold" th:text="${finalPrice}"></h2>
-                            <span class="text-muted small"> *Prices are excluded
-									VAT. </span>
                             <hr>
-                            <form class="form-signin" method="POST" th:action="@{/cart}" th:object="${cartForm}">
-                                <input name="user" th:value="${person.id_user}" type="hidden">
-                                <input name="total_price" th:value="${finalPrice}" type="hidden">
+                             <span class="text-muted small"> *Tous les prix appliqués
+									sont HT. </span>
+                            <hr>
+                            <form method="POST" class="form-sign-in" th:object="${cartForm}" th:action="@{/cart}">
+                                <input type="hidden" name="user" th:value="${person.id_user}">
+                                <input type="hidden" name="total_price" th:value="${finalPrice}">
+
                                 <div class="m-t-sm">
                                     <div class="btn-group">
-                                        <button class="btn btn-primary btn-sm" type="submit">
-                                            <i class="fa fa-shopping-cart"></i> Order
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-shopping-cart"></i> Commander
                                         </button>
-                                        <a class="btn btn-white btn-sm" href="/products">Continue shopping </a>
+                                        <a href="/products" class="btn btn-white btn-sm">Continuer Achat </a>
                                     </div>
                                 </div>
                             </form>
@@ -166,7 +160,8 @@
                             <h3>
                                 <i class="fa fa-phone"></i> +44 100 783 001
                             </h3>
-                            <span class="small"> Please contact us for further queries. Our site is open 24/7. </span>
+                            <span class="small"> Veuillez nous contacter si vous avez
+									des questions. Notre plateforme est ouverte 24h/24h. </span>
                         </div>
                     </div>
                 </div>
@@ -174,6 +169,8 @@
         </div>
     </div>
 </section>
+</body>
+
 
 
 <script crossorigin="anonymous"

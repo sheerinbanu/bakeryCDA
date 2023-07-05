@@ -45,7 +45,7 @@
                 </li>
             </ul>
         </div>
-        <div><a href="#"><i aria-hidden="true" class="fa fa-shopping-cart"></i></a></div>
+        <div><a href="/cart"><i aria-hidden="true" class="fa fa-shopping-cart"></i></a></div>
     </div>
     <button class="btn btn-outline-danger my-2 my-sm-0">
         <a onclick="document.forms['logoutForm'].submit()"><i aria-hidden="true" class="fa fa-sign-out"></i></a>
@@ -54,35 +54,25 @@
 </header>
 <body>
 <div class="container">
-
     <div class="row justify-content-center">
-
         <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
-
             <form id="logoutForm" method="POST" th:action="@{/logout}">
                 <input name="${_csrf.parameterName}" type="hidden"
                        value="${_csrf.token}"/>
             </form>
-
             <h2 style="text-align: center">
                 Hello
                 <span sec:authorize="isAuthenticated()"></span>
                 <span sec:authentication="name" style="color: mediumvioletred "></span>
                 !
             </h2>
-
         </div>
-
     </div>
 </div>
 <div class="container py-5">
-
     <div class="row justify-content-around">
-
         <div class="card mb-3" style="width: 18rem;" th:each="product: ${products}">
-
             <h3 class="card-header" th:text="${product.name}"></h3>
-
             <div class="card-body">
                 <div class="row justify-content-start">
                     <div class="col-4" th:text="${product.unit_price}"></div>
@@ -93,7 +83,6 @@
             <div class="card-body">
                 <p class="card-text" th:text="${product.description}"></p>
             </div>
-
             <form class="form-sign-in" method="POST" th:action="@{/bakingPans}"
                   th:object="${selectionForm}">
                 <div class="card-body">
@@ -103,16 +92,15 @@
                             <option th:each="quantity :${quantityList}"
                                     th:text="${quantity}"></option>
                         </select>
+                        <input type="hidden" name="product" th:value="${product.id_product}" >
                     </div>
                     <div class="row">
                         <button class="btn btn-danger" type="submit">add to
                             cart
                         </button>
                     </div>
-
                 </div>
             </form>
-
         </div>
     </div>
 </div>
