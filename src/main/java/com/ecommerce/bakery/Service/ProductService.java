@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +75,8 @@ public class ProductService {
             return "redirect:/errorPage";
         }
         double finalPrice = (product.getUnit_price() * selection.getQuantity());
-
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        finalPrice = Double.parseDouble(decimalFormat.format(finalPrice));
         selection.setTotal(finalPrice);
         selection.setId_user(currentUserId);
         ss.insertSelection(selection);

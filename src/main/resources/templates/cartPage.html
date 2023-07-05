@@ -71,7 +71,7 @@
                 <div class="col-md-9">
                     <div class="box">
                         <div class="box-title">
-                            <h5>Selection dans votre Panier</h5>
+                            <h5>Selection in your cart</h5>
                         </div>
                         <div class="box-content" th:each="selection: ${selections}">
                             <div class="table-responsive">
@@ -115,10 +115,10 @@
                             <input type="hidden" name="total_price" th:value="${finalPrice}">
                             <div class="box-content">
                                 <button type="submit" class="btn btn-primary pull-right">
-                                    <i class="fa fa fa-shopping-cart"></i> Commander
+                                    <i class="fa fa fa-shopping-cart"></i> Order
                                 </button>
                                 <a href="/products" class="btn btn-white"><i
-                                        class="fa fa-arrow-left"></i> Continuer Achat</a>
+                                        class="fa fa-arrow-left"></i> Continue Shopping</a>
                             </div>
                         </form>
 
@@ -128,14 +128,13 @@
                 <div class="col-md-3">
                     <div class="box">
                         <div class="box-title">
-                            <h5>Résumé du Panier</h5>
+                            <h5>Cart Summary</h5>
                         </div>
                         <div class="box-content">
                             <span> Total en Euro € </span>
                             <h2 class="font-bold" th:text="${finalPrice}"></h2>
                             <hr>
-                             <span class="text-muted small"> *Tous les prix appliqués
-									sont HT. </span>
+                             <span class="text-muted small"> *All prices are VAT excluded</span>
                             <hr>
                             <form method="POST" class="form-sign-in" th:object="${cartForm}" th:action="@{/cart}">
                                 <input type="hidden" name="user" th:value="${person.id_user}">
@@ -144,9 +143,9 @@
                                 <div class="m-t-sm">
                                     <div class="btn-group">
                                         <button type="submit" class="btn btn-primary btn-sm">
-                                            <i class="fa fa-shopping-cart"></i> Commander
+                                            <i class="fa fa-shopping-cart"></i> Order
                                         </button>
-                                        <a href="/products" class="btn btn-white btn-sm">Continuer Achat </a>
+                                        <a href="/products" class="btn btn-white btn-sm"> Continue Shopping </a>
                                     </div>
                                 </div>
                             </form>
@@ -160,8 +159,7 @@
                             <h3>
                                 <i class="fa fa-phone"></i> +44 100 783 001
                             </h3>
-                            <span class="small"> Veuillez nous contacter si vous avez
-									des questions. Notre plateforme est ouverte 24h/24h. </span>
+                            <span class="small"> Please contact us for further queries.We are 24/7 at your disposal. </span>
                         </div>
                     </div>
                 </div>
