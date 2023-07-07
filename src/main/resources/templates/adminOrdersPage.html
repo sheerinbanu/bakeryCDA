@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Product Management</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/admin/orders">Bakery Management Pro.</a>
+            <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="/admin/orders">Orders</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="/admin/manageCategory">Categories</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="/admin/manageProduct">Products</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="/admin/addAdmin">Admin Creation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/manageUser">Client Profile</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="/">Customer Interface</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <button class="btn btn-outline-danger my-2 my-sm-0">
+            <a onclick="document.forms['logoutForm'].submit()">LOG OUT</a>
+        </button>
+    </nav>
+</header>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
+            <form id="logoutForm" method="POST" th:action="@{/logout}">
+                <input name="${_csrf.parameterName}" type="hidden"
+                       value="${_csrf.token}"/>
+            </form>
+            <h2 style="text-align: center">
+                Hello
+                <span sec:authorize="isAuthenticated()"></span>
+                <span sec:authentication="name" style="color: mediumvioletred "></span>
+                !
+            </h2>
+        </div>
+    </div>
+</div>
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Checking</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-active" th:each="order: ${orders}">
+                    <td th:text="${order.id_order}">
+                    <td th:text="${order.order_date}">
+                    <td th:text="${order.user.username}">
+                    <td th:text="${order.user.email}">
+                    <td th:text="${order.cart.total_price}">
+                    <td>
+                        <a class="btn btn-warning" role="button"
+                           th:href="@{'/admin/orders/' + ${order.id_order}}">Voir</a>
+                    </td>
+                    <td th:text="${order.validate} ? 'TRAITÉ' : 'À VÉRIFIER'"/>
+                    <td>
+                        <div>
+                            <form class="form-sign-in" method="POST" th:action="@{/admin/orders}">
+                                <input name="orderId" th:value="${order.id_order}" type="hidden">
+                                <input name="orderDate" th:value="${order.order_date}" type="hidden">
+                                <button class="btn btn-success" type="submit"> Validate</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script crossorigin="anonymous"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+<footer class="bg-light text-center">
+    <div class="container p-3 pb-0">
+        <section class="">
+            <form action="">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-auto">
+                        <p class="pt-2">
+                            <strong>Sign up for our newsletter</strong>
+                        </p>
+                    </div>
+                    <div class="col-md-5 col-12">
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input class="form-control" id="form5Example27" type="email"/>
+                            <label class="form-label" for="form5Example27">Email address</label>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary mb-4" type="submit">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">BAKERY.com</a>
+    </div>
+</footer>
+</html>

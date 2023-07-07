@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Data
@@ -39,7 +39,10 @@ public class ProductService {
     @Autowired
     private SelectionService ss;
 
-    public List<Product> getAllProduct() {
+    public Optional<Product> getProduct(final int id){
+        return pr.findById(id);
+    }
+    public Iterable<Product> getAllProduct() {
         return pr.findAll();
     }
 
@@ -58,7 +61,7 @@ public class ProductService {
     }
 
     public List<Product> getProductsByCategory(int categoryId) {
-        List<Product> allProducts = getAllProduct();
+        Iterable<Product> allProducts = getAllProduct();
         List<Product> categoryProducts = new ArrayList<>();
         for (Product product : allProducts) {
             if (product.getCategory().getId_category() == categoryId) {

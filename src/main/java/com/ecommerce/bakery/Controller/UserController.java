@@ -36,7 +36,7 @@ public class UserController {
             return "registrationPage";
         }
         authService.createNewUser(userForm);
-        return "redirect:/loginPage";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")

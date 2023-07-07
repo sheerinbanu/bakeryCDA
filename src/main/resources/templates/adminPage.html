@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Admin Account Creation</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/admin/orders">BAKERY Pro Admin. Management</a>
+    </div>
+</nav>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
+            <form id="logoutForm" method="POST" th:action="@{/logout}">
+                <input name="${_csrf.parameterName}" type="hidden"
+                       value="${_csrf.token}"/>
+            </form>
+            <h2 style="text-align: center">
+                Hello
+                <span sec:authorize="isAuthenticated()"></span>
+                <span sec:authentication="name" style="color: mediumvioletred "></span>
+                !
+            </h2>
+        </div>
+    </div>
+</div>
+
+<div class="container pb-5">
+
+    <div class="p-5">
+        <h1 class="text-center">Bakery Inscription Pro.</h1>
+        <p class="text-center">This portal is to create other site administrators</p>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <form class="form-sign-in" method="POST" th:action="@{/admin/addAdmin}" th:object="${userForm}">
+                <h2 class="form-sign-in-heading">Admin Account Creation </h2>
+                <div class="form-group mb-3">
+                    <input autofocus="true" class="form-control" placeholder="First Name" th:field="*{first_name}"
+                           type="text">
+                </div>
+                <div class="form-group mb-3">
+                    <input autofocus="true" class="form-control" placeholder="Last Name" th:field="*{last_name}"
+                           type="text">
+                </div>
+                <div class="form-group mb-3">
+                    <input autofocus="true" class="form-control" placeholder="Email" th:field="*{email}" type="text">
+                </div>
+                <div class="form-group mb-3">
+                    <option th:text="Administator" th:value="'administrator'"></option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <input autofocus="true" class="form-control" placeholder="Username" th:field="*{username}"
+                           type="text">
+                    <span class="has-error" th:errors="*{username}" th:if="${#fields.hasErrors('username')}"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <input class="form-control" placeholder="Password" th:field="*{password}" type="password">
+                    <span class="has-error" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <input class="form-control" placeholder="Confirm your password" th:field="*{passwordConfirm}"
+                           type="password">
+                    <span class="has-error" th:errors="*{passwordConfirm}"
+                          th:if="${#fields.hasErrors('passwordConfirm')}"></span>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script crossorigin="anonymous"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+<footer class="bg-light text-center">
+    <div class="container p-3 pb-0">
+        <section class="">
+            <form action="">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-auto">
+                        <p class="pt-2">
+                            <strong>Sign up for our newsletter</strong>
+                        </p>
+                    </div>
+                    <div class="col-md-5 col-12">
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input class="form-control" id="form5Example27" type="email"/>
+                            <label class="form-label" for="form5Example27">Email address</label>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary mb-4" type="submit">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">BAKE.com</a>
+    </div>
+</footer>
+</html>
