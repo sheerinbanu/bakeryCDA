@@ -25,6 +25,6 @@ public class OrderController {
     @GetMapping("/order_history/{id}")
     public String getSelectionByOrder(Model model, @ModelAttribute("selection") Order order, @PathVariable(name = "id") int Id_order){
         os.getDetailSelectionById(Id_order, model);
-        return "orderDetails";
+        return "orderDetailsPage";
     }
 }

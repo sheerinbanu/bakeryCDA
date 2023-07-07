@@ -110,6 +110,6 @@ public class CartService {
         order.setUser(user);
         order.setValidate(false);
         os.insertOrder(order);
-        return "redirect:/cartPage";
+        return "redirect:/cart";
     }
 }

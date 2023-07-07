@@ -2,64 +2,67 @@
 <html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>cart</title>
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>cart</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <header>
-<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-    <div class="container-fluid">
-        <img alt="cake" height="50px" src="../images/bakeLogo.PNG" width="50px">
-        <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler"
-                data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/">Home
-                        <span class="visually-hidden">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
-                       data-bs-toggle="dropdown"
-                       href="#" role="button">Products</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/bakingPans">Baking pans</a>
-                        <a class="dropdown-item" href="/foodDecoration">Food decoration</a>
-                        <a class="dropdown-item" href="/chocolates">Chocolates</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/productGeneralPage">All categories</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Recipes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <img alt="cake" height="50px" src="../images/bakeLogo.PNG" width="50px">
+            <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                           data-bs-toggle="dropdown"
+                           href="#" role="button">Products</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/bakingPans">Baking pans</a>
+                            <a class="dropdown-item" href="/foodDecoration">Food decoration</a>
+                            <a class="dropdown-item" href="/chocolates">Chocolates</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/productGeneralPage">All categories</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Recipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/order_history">Order History</a>
+                    </li>
+                </ul>
+            </div>
+            <div><a href="/cart"><i aria-hidden="true" class="fa fa-shopping-cart"></i></a></div>
         </div>
-        <div><a href="/cart"><i aria-hidden="true" class="fa fa-shopping-cart"></i></a></div>
-    </div>
-    <button class="btn btn-outline-danger my-2 my-sm-0">
-        <a onclick="document.forms['logoutForm'].submit()"><i aria-hidden="true" class="fa fa-sign-out"></i></a>
-    </button>
-</nav>
+        <button class="btn btn-outline-danger my-2 my-sm-0">
+            <a onclick="document.forms['logoutForm'].submit()"><i aria-hidden="true" class="fa fa-sign-out"></i></a>
+        </button>
+    </nav>
 </header>
 <body>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
             <form id="logoutForm" method="POST" th:action="@{/logout}">
-                <input type="hidden" name="${_csrf.parameterName}"
-                       value="${_csrf.token}" />
+                <input name="${_csrf.parameterName}" type="hidden"
+                       value="${_csrf.token}"/>
             </form>
         </div>
     </div>
@@ -80,27 +83,27 @@
                                     <tr>
                                         <td width="90">
                                             <div class="cart-product-imitation">
-                                                <img th:src="${selection.product.picture}" width="75%"
-                                                     height="110%">
+                                                <img height="110%" th:src="${selection.product.picture}"
+                                                     width="75%">
                                             </div>
                                         </td>
                                         <td class="desc">
                                             <h3>
-                                                <a href="#" class="text-navy"
+                                                <a class="text-navy" href="#"
                                                    th:text="${selection.product.name}"></a>
                                             </h3>
                                             <div class="m-t-sm">
-                                                <a type="submit"
+                                                <a class="btn btn-primary pull-right"
                                                    th:href="@{'/cart/' + ${selection.id_selection}}"
-                                                   class="btn btn-primary pull-right"> Supprimer la
+                                                   type="submit"> Supprimer la
                                                     Selection</a>
                                             </div>
                                         </td>
                                         <td>
                                             <s class="small text-muted" th:text="${selection.product.unit_price}"></s>
                                         </td>
-                                        <td><input th:value="${selection.quantity}"
-                                                   class="form-control" disabled></td>
+                                        <td><input class="form-control"
+                                                   disabled th:value="${selection.quantity}"></td>
                                         <td>
                                             <h4 th:text="${selection.total}"></h4>
                                             <h5>€</h5>
@@ -110,21 +113,19 @@
                                 </table>
                             </div>
                         </div>
-                        <form method="POST" class="form-sign-in" th:object="${cartForm}" th:action="@{/cart}">
-                            <input type="hidden" name="user" th:value="${person.id_user}">
-                            <input type="hidden" name="total_price" th:value="${finalPrice}">
+                        <form class="form-sign-in" method="POST" th:action="@{/cart}" th:object="${cartForm}">
+                            <input name="user" th:value="${person.id_user}" type="hidden">
+                            <input name="total_price" th:value="${finalPrice}" type="hidden">
                             <div class="box-content">
-                                <button type="submit" class="btn btn-primary pull-right">
+                                <button class="btn btn-primary pull-right" type="submit">
                                     <i class="fa fa fa-shopping-cart"></i> Order
                                 </button>
-                                <a href="/products" class="btn btn-white"><i
+                                <a class="btn btn-white" href="/productGeneralPage"><i
                                         class="fa fa-arrow-left"></i> Continue Shopping</a>
                             </div>
                         </form>
-
                     </div>
                 </div>
-
                 <div class="col-md-3">
                     <div class="box">
                         <div class="box-title">
@@ -134,18 +135,18 @@
                             <span> Total en Euro € </span>
                             <h2 class="font-bold" th:text="${finalPrice}"></h2>
                             <hr>
-                             <span class="text-muted small"> *All prices are VAT excluded</span>
+                            <span class="text-muted small"> *All prices are VAT excluded</span>
                             <hr>
-                            <form method="POST" class="form-sign-in" th:object="${cartForm}" th:action="@{/cart}">
-                                <input type="hidden" name="user" th:value="${person.id_user}">
-                                <input type="hidden" name="total_price" th:value="${finalPrice}">
+                            <form class="form-sign-in" method="POST" th:action="@{/cart}" th:object="${cartForm}">
+                                <input name="user" th:value="${person.id_user}" type="hidden">
+                                <input name="total_price" th:value="${finalPrice}" type="hidden">
 
                                 <div class="m-t-sm">
                                     <div class="btn-group">
-                                        <button type="submit" class="btn btn-primary btn-sm">
+                                        <button class="btn btn-primary btn-sm" type="submit">
                                             <i class="fa fa-shopping-cart"></i> Order
                                         </button>
-                                        <a href="/products" class="btn btn-white btn-sm"> Continue Shopping </a>
+                                        <a class="btn btn-white btn-sm" href="/productGeneralPage"> Continue Shopping </a>
                                     </div>
                                 </div>
                             </form>
@@ -168,7 +169,6 @@
     </div>
 </section>
 </body>
-
 
 
 <script crossorigin="anonymous"
