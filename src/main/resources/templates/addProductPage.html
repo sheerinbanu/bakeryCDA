@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <title>Product Management</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/design.css}"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <header>
@@ -27,7 +28,7 @@
                                             href="/admin/manageProduct">Products</a></li>
                     <li class="nav-item"><a class="nav-link"
                                             href="/admin/addAdmin">Admin Creation</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/admin/manageUser">Client Profile</a>
+                    <li class="nav-item"><a class="nav-link" href="/admin/manageUser">Client Profiles</a>
                     </li>
                     <li class="nav-item"><a class="nav-link active" href="/">Customer Interface</a>
                     </li>
@@ -39,7 +40,7 @@
         </button>
     </nav>
 </header>
-<body>
+<body id="backOffice">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
@@ -59,7 +60,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="/admin/manageProduct">Product Management
                     </a></li>
@@ -105,12 +106,9 @@
                 </div>
                 <input class="form-control" th:field="*{id_product}" type="hidden"/>
                 <button class="btn btn-primary" type="submit">Save</button>
-
             </form>
-
         </div>
     </div>
-
 </div>
 
 
@@ -146,7 +144,7 @@
     </div>
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         © 2020 Copyright:
-        <a class="text-dark" href="https://mdbootstrap.com/">BAKE.com</a>
+        <a class="text-dark" href="https://mdbootstrap.com/">BAKERY.com</a>
     </div>
 </footer>
 </html>

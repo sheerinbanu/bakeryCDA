@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Bakery Products</title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/design.css}"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
@@ -42,8 +43,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
-                <li sec:authorize-url="/admin/" class="nav-item">
-                    <a class="nav-link" id="admin" th:href="@{/admin/orders}">Interface-Admin</a>
+                <li class="nav-item" sec:authorize-url="/admin/">
+                    <a class="nav-link" id="admin" th:href="@{/admin/manageUser}" style="color: mediumvioletred"><b>Interface-Admin</b></a>
                 </li>
             </ul>
         </div>
@@ -91,17 +92,18 @@
                     <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
                         additional content. This content is a little bit longer.</p>
                 </div>
-                <a href="/foodDecoration"><img alt="food decoration" class="card-img-top" src="../images/decoration.jpg"></a>
+                <a href="/foodDecoration"><img alt="food decoration" class="card-img-top"
+                                               src="../images/decoration.jpg"></a>
             </div>
         </div>
         <div class="col mb-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"style="text-align: center"><b>chocolates</b></h5>
+                    <h5 class="card-title" style="text-align: center"><b>chocolates</b></h5>
                     <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
                         additional content. This content is a little bit longer.</p>
                 </div>
-                <a href="/chocolates" ><img alt="chocolate" class="card-img-top" src="../images/chocolates.jpg"></a>
+                <a href="/chocolates"><img alt="chocolate" class="card-img-top" src="../images/chocolates.jpg"></a>
             </div>
         </div>
     </div>
@@ -140,7 +142,7 @@
     </div>
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         © 2020 Copyright:
-        <a class="text-dark" href="https://mdbootstrap.com/">BAKE.com</a>
+        <a class="text-dark" href="https://mdbootstrap.com/">BAKERY.com</a>
     </div>
 </footer>
 </html>

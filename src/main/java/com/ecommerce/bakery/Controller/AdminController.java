@@ -48,13 +48,11 @@ public class AdminController {
         model.addAttribute("has_success", true);
         return "adminPage";
     }
-
     @GetMapping("/admin/manageProduct")
     public String ManageController(Model model) {
         model.addAttribute("products", ps.getAllProduct());
         return "manageProductPage";
     }
-
     @GetMapping("/admin/addProduct")
     public String AddProduct(Model model, @ModelAttribute("product") Product product) {
         model.addAttribute("categories", cs.getAllCategory());
@@ -128,11 +126,13 @@ public class AdminController {
         model.addAttribute("user", user1);
         return "updateUserPage";
     }
-    @PostMapping("/admin/update_user/{id}")
-    public String updateUser(@ModelAttribute User user) {
-        userService.insertUser(user);
-        return "redirect:/admin/manageUser";
-    }
+    @PostMapping("/admin/updateUser/{id}")
+   public String updateUser(@PathVariable("id") int id, @ModelAttribute User user) {
+       user.setId(id); // Set the user ID from the path variable
+       userService.updateUser(user);
+       userService.insertUser(user);
+       return "redirect:/admin/manageUser";
+   }
     @GetMapping("/admin/deleteUser/{id}")
     public String DeleteUser(@PathVariable(name = "id") int id) {
         userService.removeUser(id);
@@ -146,7 +146,7 @@ public class AdminController {
     @GetMapping("/admin/orders/{id}")
     public String getSelectionByOrder(Model model, @ModelAttribute("selection") Order order, @PathVariable(name = "id") int Id_order){
         os.getDetailSelectionById(Id_order, model);
-        return "adminOrderDetailsPage";
+        return "adminOrdersDetailsPage";
     }
     @PostMapping("/admin/orders")
     public String submitCartForm(@RequestParam("orderId") int orderId, @RequestParam("orderDate") String orderDate, @ModelAttribute("orderForm") Order order, Model model) {

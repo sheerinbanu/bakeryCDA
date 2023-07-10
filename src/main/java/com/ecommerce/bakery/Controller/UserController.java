@@ -30,12 +30,13 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult,Model model) {
         userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
             return "registrationPage";
         }
         authService.createNewUser(userForm);
+        model.addAttribute("message", "Congratulations your registration was successful!");
         return "redirect:/login";
     }
 

@@ -5,14 +5,20 @@
     <meta charset="utf-8">
     <title>Admin Account Creation</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/design.css}"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-</head>
+ </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/admin/orders">BAKERY Pro Admin. Management</a>
+        <ul>
+            <li class="nav-item" sec:authorize-url="/admin/">
+                <a class="nav-link" id="admin" th:href="@{/admin/orders}" style="color:brown"><b>Interface-Admin</b></a>
+            </li>
+        </ul>
     </div>
 </nav>
-<body>
+<body id="backOffice">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
@@ -20,7 +26,7 @@
                 <input name="${_csrf.parameterName}" type="hidden"
                        value="${_csrf.token}"/>
             </form>
-            <h2 style="text-align: center">
+            <h2 style="text-align: center; color: white">
                 Hello
                 <span sec:authorize="isAuthenticated()"></span>
                 <span sec:authentication="name" style="color: mediumvioletred "></span>
@@ -29,17 +35,15 @@
         </div>
     </div>
 </div>
-
 <div class="container pb-5">
-
     <div class="p-5">
-        <h1 class="text-center">Bakery Inscription Pro.</h1>
-        <p class="text-center">This portal is to create other site administrators</p>
+        <h1 class="text-center" style="color: white">Bakery Inscription Pro.</h1>
+        <p class="text-center" style="color: white">This portal is to create other site administrators</p>
     </div>
     <div class="row justify-content-center">
         <div class="col-6">
             <form class="form-sign-in" method="POST" th:action="@{/admin/addAdmin}" th:object="${userForm}">
-                <h2 class="form-sign-in-heading">Admin Account Creation </h2>
+                <h2 class="form-sign-in-heading" style="color: white; text-align: center">Admin Account Creation </h2>
                 <div class="form-group mb-3">
                     <input autofocus="true" class="form-control" placeholder="First Name" th:field="*{first_name}"
                            type="text">
@@ -75,7 +79,6 @@
         </div>
     </div>
 </div>
-
 <script crossorigin="anonymous"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -108,7 +111,7 @@
     </div>
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         © 2020 Copyright:
-        <a class="text-dark" href="https://mdbootstrap.com/">BAKE.com</a>
+        <a class="text-dark" href="https://mdbootstrap.com/">BAKERY.com</a>
     </div>
 </footer>
 </html>

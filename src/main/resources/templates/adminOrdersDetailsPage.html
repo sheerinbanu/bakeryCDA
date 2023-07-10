@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>Product Management</title>
+    <title>Order Details</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/design.css}"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -12,7 +12,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin/orders">Bakery Management Pro.</a>
-            <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"
                     data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -39,63 +40,60 @@
     </nav>
 </header>
 <body id="backOffice">
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
-            <form id="logoutForm" method="POST" th:action="@{/logout}">
-                <input name="${_csrf.parameterName}" type="hidden"
-                       value="${_csrf.token}"/>
-            </form>
-            <h2 style="text-align: center; color: white">
-                Hello
-                <span sec:authorize="isAuthenticated()"></span>
-                <span sec:authentication="name" style="color: mediumvioletred "></span>
-                !
-            </h2>
+<div class="row justify-content-center">
+    <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
+        <form id="logoutForm" method="POST" th:action="@{/logout}">
+            <input name="${_csrf.parameterName}" type="hidden"
+                   value="${_csrf.token}"/>
+        </form>
+        <h2 style="text-align: center; color: white">
+            Hello
+            <span sec:authorize="isAuthenticated()"></span>
+            <span sec:authentication="name" style="color: mediumvioletred "></span>
+            !
+        </h2>
+        <h3 style="color: coral; text-align: center">Details</h3>
+    </div>
+</div>
+</div>
+<section id="back">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="/admin/orders">Order History</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Order Details</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-12 mx-0">
+                <table
+                        class="table bg-white rounded border table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Order Id</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="detail: ${details}">
+                    <tr>
+                        <th scope="row" th:text="${detail.cart.id_cart}"></th>
+                        <td th:text="${detail.product.name}"></td>
+                        <td th:text="${detail.product.category.name}"></td>
+                        <td th:text="${detail.quantity}"></td>
+                        <td th:text="${'&euro;' +' '+ detail.total}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <div><a href="/admin/orders"><button type="button" class="btn btn-outline-primary">BACK</button></a></div>
     </div>
-</div>
-<div class="d-flex justify-content-around mt-5 mb-5 ">
-    <div>
-        <a class="btn btn-outline-success" href="/admin/addProduct">+
-            Add a product</a>
-    </div>
-</div>
-<div class="container">
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead class="table-dark">
-            <tr>
-                <th>Id</th>
-                <th scope="col">Product</th>
-                <th scope="col">Image</th>
-                <th scope="col">Price EUR</th>
-                <th scope="col">Category</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="table-active" th:each="product: ${products}">
-                <th th:text="${product.id_product}">
-                <td th:text="${product.name}">
-                <td><img height="50%" th:src="@{${product.picture}}" width="50%"/></td>
-                <td th:text="${product.unit_price}">
-                <td th:text="${product.category.name}">
-                <td>
-                    <a class="btn btn-success" role="button"
-                       th:href="@{'/admin/updateProduct/' + ${product.id_product}}">&#9999</a>
-                </td>
-                <td>
-                    <a class="btn btn-warning" role="button"
-                       th:href="@{'/admin/deleteProduct/' + ${product.id_product}}">Delete</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
+</section>
 
 <script crossorigin="anonymous"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"

@@ -25,24 +25,10 @@ public class WebSecurityConfig {
 
     @Bean
     SecurityFilterChain configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/", "/registration", "/css/**", "/js/**", "/images/**").permitAll()
-                        .requestMatchers("/admin").hasAnyRole("ADMIN")
-                        .anyRequest().authenticated()
-                )
-
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/productGeneralPage", true)
-                        .permitAll()
-                )
-                .logout(logout -> logout
-                        .permitAll());
-
-
+        http.authorizeHttpRequests(requests -> requests.requestMatchers("/", "/registration", "/css/**", "/js/**", "/images/**").permitAll().requestMatchers("/admin").hasAnyRole("ADMIN").anyRequest().authenticated()).formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/productGeneralPage", true).permitAll()).logout(logout -> logout.permitAll());
         return http.build();
     }
+
     @Autowired
     void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder.userDetailsService(userDetailsService);

@@ -56,4 +56,7 @@ public class UserService implements UserDetailsService {
         userRepository.deleteById(userId);
     }
 
+    public void updateUser(User user) {
+        userRepository.save(user);
+    }
 }

@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>Product Management</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/design.css}"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <header>
@@ -26,7 +27,7 @@
                                             href="/admin/manageProduct">Products</a></li>
                     <li class="nav-item"><a class="nav-link"
                                             href="/admin/addAdmin">Admin Creation</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/admin/manageUser">Client Profile</a>
+                    <li class="nav-item"><a class="nav-link" href="/admin/manageUser">Client Profiles</a>
                     </li>
                     <li class="nav-item"><a class="nav-link active" href="/">Customer Interface</a>
                     </li>
@@ -38,7 +39,7 @@
         </button>
     </nav>
 </header>
-<body>
+<body id="backOffice">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
@@ -46,7 +47,7 @@
                 <input name="${_csrf.parameterName}" type="hidden"
                        value="${_csrf.token}"/>
             </form>
-            <h2 style="text-align: center">
+            <h2 style="text-align: center; color: white">
                 Hello
                 <span sec:authorize="isAuthenticated()"></span>
                 <span sec:authentication="name" style="color: mediumvioletred "></span>
@@ -55,13 +56,19 @@
         </div>
     </div>
 </div>
+<div class="d-flex justify-content-around mt-5 mb-5 ">
+    <div>
+        <a class="btn btn-outline-success" href="/registration">+
+            Add an user</a>
+    </div>
+</div>
 <div class="container">
     <div class="table-responsive">
         <table class="table table-hover">
             <tr class="table-dark">
                 <th><input class="form-check-input" id="flexDefault" type="checkbox"
                            value=""> <label class="form-check-label"
-                                                    for="flexDefault"></label></th>
+                                            for="flexDefault"></label></th>
                 <th scope="row">Id</th>
                 <th>LastName</th>
                 <th>FirstName</th>
@@ -73,7 +80,7 @@
             <tr th:each="user : ${users}">
                 <th><input class="form-check-input" id="flexCheckDefault" type="checkbox"
                            value=""><label class="form-check-label"
-                                                        for="flexCheckDefault"> </label></th>
+                                           for="flexCheckDefault"> </label></th>
                 <td th:text="${user.id_user}">...</td>
                 <td th:text="${user.last_name}">...</td>
                 <td th:text="${user.first_name}">...</td>
@@ -119,7 +126,7 @@
     </div>
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         © 2020 Copyright:
-        <a class="text-dark" href="https://mdbootstrap.com/">BAKE.com</a>
+        <a class="text-dark" href="https://mdbootstrap.com/">BAKERY.com</a>
     </div>
 </footer>
 </html>
