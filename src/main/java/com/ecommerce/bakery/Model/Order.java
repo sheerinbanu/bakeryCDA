@@ -14,11 +14,11 @@ public class Order {
     private boolean validate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_cart", referencedColumnName= "id_cart", insertable = true, updatable = true)
+    @JoinColumn(name = "id_cart", referencedColumnName= "id_cart", insertable = true, updatable = false)
     private Cart cart;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_user", referencedColumnName= "id_user", insertable = true, updatable = true)
+    @JoinColumn(name = "id_user", referencedColumnName= "id_user", insertable = true, updatable = false)
     private User user;
 
 

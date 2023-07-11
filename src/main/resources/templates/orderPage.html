@@ -89,11 +89,11 @@
                     <tr>
                         <th scope="row" th:text="${order.id_order}"></th>
                         <td th:text="${order.order_date}"></td>
-                        <td th:text="${order.cart.total_price}"></td>
+                        <td th:text="${'&euro;' +' '+ order.cart.total_price}"></td>
                         <td th:text="${order.cart.user.email}"></td>
                         <td th:text="${order.validate} ? 'VALIDATED' : 'ORDER IN PROCESS'"/>
                         <td>
-                            <a class="btn btn-success" role="button" th:href="@{'/order_history/' + ${order.id_order}}">View</a>
+                            <a class="btn btn-success" role="button" th:href="@{'/orderHistory/' + ${order.id_order}}">View</a>
                         </td>
                     </tr>
                     </tbody>

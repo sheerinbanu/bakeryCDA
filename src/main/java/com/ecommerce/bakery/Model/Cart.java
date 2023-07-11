@@ -15,6 +15,6 @@ public class Cart {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_user", referencedColumnName= "id_user", insertable = true, updatable = true)
+    @JoinColumn(name = "id_user", referencedColumnName= "id_user", insertable = true, updatable = false)
     private User user;
 }

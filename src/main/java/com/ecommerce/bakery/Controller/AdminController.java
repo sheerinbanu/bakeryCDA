@@ -150,7 +150,6 @@ public class AdminController {
     }
     @PostMapping("/admin/orders")
     public String submitCartForm(@RequestParam("orderId") int orderId, @RequestParam("orderDate") String orderDate, @ModelAttribute("orderForm") Order order, Model model) {
-        System.out.println(orderId);
         order.setId_order(orderId);
         order.setOrder_date(orderDate);
         order.setValidate(true);

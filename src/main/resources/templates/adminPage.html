@@ -8,16 +8,37 @@
     <link rel="stylesheet" th:href="@{/css/design.css}"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
  </head>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/admin/orders">BAKERY Pro Admin. Management</a>
-        <ul>
-            <li class="nav-item" sec:authorize-url="/admin/">
-                <a class="nav-link" id="admin" th:href="@{/admin/orders}" style="color:brown"><b>Interface-Admin</b></a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/admin/orders">Bakery Management Pro.</a>
+            <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="/admin/orders">Orders</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="/admin/manageCategory">Categories</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="/admin/manageProduct">Products</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="/admin/addAdmin">Admin Creation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/manageUser">Client Profiles</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="/">Customer Interface</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <button class="btn btn-outline-danger my-2 my-sm-0">
+            <a onclick="document.forms['logoutForm'].submit()">LOG OUT</a>
+        </button>
+    </nav>
+</header>
 <body id="backOffice">
 <div class="container">
     <div class="row justify-content-center">

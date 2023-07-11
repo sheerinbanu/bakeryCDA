@@ -15,11 +15,11 @@ public class OrderController {
    @Autowired
     private OrderService os;
 
-    @GetMapping({"/order_history"})
+    @GetMapping({"/orderHistory"})
     public String orderHistory(Model model, Authentication authentication) {
         return os.getAllOrdersByUser(authentication, model);
     }
-    @GetMapping("/order_history/{id}")
+    @GetMapping("/orderHistory/{id}")
     public String getSelectionByOrder(Model model, @ModelAttribute("selection") Order order, @PathVariable(name = "id") int Id_order){
         os.getDetailSelectionById(Id_order, model);
         return "orderDetailsPage";

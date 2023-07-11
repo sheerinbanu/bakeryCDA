@@ -43,9 +43,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
-                <li class="nav-item" sec:authorize-url="/admin/">
-                    <a class="nav-link" id="admin" th:href="@{/admin/manageUser}" style="color: mediumvioletred"><b>Interface-Admin</b></a>
+                <li sec:authorize-url="/admin/" class="nav-item">
+                    <a class="nav-link" id="admin" th:href="@{/admin/orders}" style="color: mediumvioletred">Interface-Admin</a>
                 </li>
+
             </ul>
         </div>
         <div class="p-3"><a href="/profile"><img src="../images/profile.png"></a></div>

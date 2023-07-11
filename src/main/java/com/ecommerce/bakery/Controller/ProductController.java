@@ -71,6 +71,4 @@ public class ProductController {
     public String addSelectToCart3(Selection selection, User user, Product product, Authentication authentication, Model model, BindingResult bindingResult) {
         return ps.submitSelectionForm(selection, user, product, authentication, model, bindingResult);
     }
-
-
 }

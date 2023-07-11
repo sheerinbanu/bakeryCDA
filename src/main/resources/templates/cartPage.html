@@ -46,7 +46,7 @@
                         <a class="nav-link" href="#">Contact</a>
                     </li>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="/order_history">Order History</a>
+                    <li class="nav-item"><a class="nav-link" href="/orderHistory" style="color: mediumvioletred">Order History</a>
                     </li>
                 </ul>
             </div>
@@ -141,7 +141,6 @@
                             <form class="form-sign-in" method="POST" th:action="@{/cart}" th:object="${cartForm}">
                                 <input name="user" th:value="${person.id_user}" type="hidden">
                                 <input name="total_price" th:value="${finalPrice}" type="hidden">
-
                                 <div class="m-t-sm">
                                     <div class="btn-group">
                                         <button class="btn btn-primary btn-sm" type="submit">

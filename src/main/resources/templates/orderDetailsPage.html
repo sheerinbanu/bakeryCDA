@@ -46,7 +46,7 @@
                         <a class="nav-link" href="#">Contact</a>
                     </li>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="/order_history">Order History</a>
+                    <li class="nav-item"><a class="nav-link" href="/orderHistory">Order History</a>
                     </li>
                 </ul>
             </div>
@@ -80,16 +80,16 @@
             <div class="col">
                 <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="/order_history">Order History</a></li>
+                        <li class="breadcrumb-item"><a href="/orderHistory">Order History</a></li>
                         <li aria-current="page" class="breadcrumb-item active">Order Details</li>
                     </ol>
                 </nav>
             </div>
             <div class="col-md-12 mx-0">
                 <table
-                        class="table bg-white rounded border table-striped table-dark">
+                        class="table table-bordered table-striped">
                     <thead>
-                    <tr>
+                    <tr class="table-danger">
                         <th scope="col">Order ID</th>
                         <th scope="col">Product</th>
                         <th scope="col">Category</th>
@@ -103,11 +103,13 @@
                         <td th:text="${detail.product.name}"></td>
                         <td th:text="${detail.product.category.name}"></td>
                         <td th:text="${detail.quantity}"></td>
+                        <td th:text="${'&euro;' +' '+detail.total}"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        <div><a href="/orderHistory"><button type="button" class="btn btn-outline-primary">BACK</button></a></div>
     </div>
 </section>
 <script crossorigin="anonymous"

@@ -11,20 +11,15 @@ import java.util.Optional;
 public class SelectionService {
     @Autowired
     private SelectionRepository ss;
-
     public Optional<Selection> getSelection(final int id){
         return ss.findById(id);
     }
-
     public Iterable<Selection> getAllSelection() {
         return ss.findAll();
-
     }
-
     public void deleteSelection(final int id) {
         ss.deleteById(id);
     }
-
     public void insertSelection(Selection Selection) {
         ss.save(Selection);
     }
