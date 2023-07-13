@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -60,8 +59,9 @@ public class CartService {
 
 
     public String getSelection(Model model, User user, Authentication authentication) throws Exception {
+        int currentUserId = us.findByUsername(authentication.getName()).getId_user();
         try (Connection con = dataSource.getConnection()) {
-            String query = "SELECT SUM(total) FROM selection WHERE id_cart IS NULL";
+            String query = "SELECT SUM(total) FROM selection WHERE id_cart IS NULL" + " AND id_user = " + currentUserId;
             PreparedStatement statement = con.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             double sum = 0;
@@ -69,12 +69,9 @@ public class CartService {
                 sum = resultSet.getDouble(1);
                 System.out.println(sum);
             }
-
             // Format sum to two decimal places
             DecimalFormat df = new DecimalFormat("#.##");
             sum = Double.parseDouble(df.format(sum));
-
-            int currentUserId = us.findByUsername(authentication.getName()).getId_user();
             ArrayList<Selection> list = new ArrayList<>();
             for (Selection s : ss.getAllSelection()) {
                 if (s.getCart() == null && s.getId_user() == currentUserId) {
