@@ -14,7 +14,7 @@ public class SelectionController {
     @GetMapping("/cart/{id}")
     public String DeleteProduct(@PathVariable(name = "id") int id) {
         ss.deleteSelection(id);
-        return "redirect:/cartPage";
+        return "redirect:/cart";
     }
 
 }

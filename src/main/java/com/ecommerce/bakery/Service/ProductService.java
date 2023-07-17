@@ -29,7 +29,6 @@ public class ProductService {
         quantityList.add(4);
         quantityList.add(5);
     }
-
     Double unit_price;
     double finalPrice;
     @Autowired
@@ -38,6 +37,7 @@ public class ProductService {
     private UserService us;
     @Autowired
     private SelectionService ss;
+
 
     public Optional<Product> getProduct(final int id){
         return pr.findById(id);
@@ -70,7 +70,6 @@ public class ProductService {
         }
         return categoryProducts;
     }
-
     public String submitSelectionForm(@ModelAttribute("selectionForm") Selection selection, User user, Product product, Authentication authentication, Model model, BindingResult bindingResult) {
         int currentUserId = us.findByUsername(authentication.getName()).getId_user();
         if (product == null) {

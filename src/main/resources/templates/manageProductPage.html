@@ -79,7 +79,7 @@
             <tr class="table-active" th:each="product: ${products}">
                 <th th:text="${product.id_product}">
                 <td th:text="${product.name}">
-                <td><img height="50%" th:src="@{${product.picture}}" width="50%"/></td>
+                <td><img height="20%" width="20%" th:src="@{${product.picture}}" /></td>
                 <td th:text="${product.unit_price}">
                 <td th:text="${product.category.name}">
                 <td>

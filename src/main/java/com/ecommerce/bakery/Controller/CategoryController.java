@@ -13,7 +13,6 @@ public class CategoryController {
     private CategoryService cs;
     @GetMapping("/productGeneralPage")
     public String showProductGeneralPage(Model model){
-
         return cs.getListCategory(model);
     }
 }
