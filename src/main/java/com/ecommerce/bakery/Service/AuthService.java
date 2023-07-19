@@ -10,10 +10,8 @@ import com.ecommerce.bakery.Repository.UserRepository;
 public class AuthService {
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     PasswordEncoder passwordEncoder;
-
     public void createNewUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role role = Role.CLIENT;

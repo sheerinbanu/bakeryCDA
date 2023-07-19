@@ -1,3 +1,7 @@
+#loginBody{
+    background-color: rgb(70,51,47);
+}
+
 .center {
     display: block;
     margin-left: auto;
@@ -36,7 +40,7 @@ button{
 
 .word-waves span:nth-child(1){
     color: transparent;
-    -webkit-text-stroke: 0.3px white;
+    -webkit-text-stroke: 0.3px #a98467;
 }
 .word-waves span:nth-child(2){
     color:#7b0100;

@@ -7,6 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/design.css}"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="/js/index.js"></script>
 </head>
 <header>
     <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
@@ -96,9 +97,14 @@
                                             <div class="m-t-sm">
                                                 <a class="btn btn-primary pull-right"
                                                    th:href="@{'/cart/' + ${selection.id_selection}}"
-                                                   type="submit"> Supprimer la
-                                                    Selection</a>
+                                                   type="submit" onclick="showPopup()"> Delete the
+                                                    selection</a>
                                             </div>
+                                            <script>
+                                                function showPopup() {
+                                                    alert("Are you sure to delete your selection?");
+                                                }
+                                            </script>
                                         </td>
                                         <td>
                                             <s class="small text-muted" th:text="${selection.product.unit_price}"></s>
