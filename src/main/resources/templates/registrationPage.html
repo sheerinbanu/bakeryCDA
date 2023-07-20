@@ -82,23 +82,30 @@
                 <div class="form-group mb-4">
                     <input autofocus="true" class="form-control" placeholder="Email" th:field="*{email}" type="text">
                     <span class="has-error" th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></span>
+                    <span class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+
                 </div>
 
 
                 <div class="form-group mb-4">
-                    <input autofocus="true" class="form-control" placeholder="Username" th:field="*{username}"
-                           type="text">
+                    <input autofocus="true" class="form-control" placeholder="Username" th:field="*{username}" type="text">
                     <span class="has-error" th:errors="*{username}" th:if="${#fields.hasErrors('username')}"></span>
+                    <span class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
                 </div>
+
                 <div class="form-group mb-4">
                     <input class="form-control" placeholder="Password" th:field="*{password}" type="password">
                     <span class="has-error" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></span>
+                    <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+
                 </div>
                 <div class="form-group mb-3">
                     <input class="form-control" placeholder="Confirm your password" th:field="*{passwordConfirm}"
                            type="password">
                     <span class="has-error" th:errors="*{passwordConfirm}"
                           th:if="${#fields.hasErrors('passwordConfirm')}"></span>
+                    <span class="error-message" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></span>
+
                 </div>
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
