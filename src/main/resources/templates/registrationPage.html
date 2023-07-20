@@ -89,6 +89,13 @@
                                type="text">
                         <span class="has-error" th:errors="*{username}" th:if="${#fields.hasErrors('username')}"></span>
                     </div>
+                <ul style="color: gray">
+                    <p>Create your password</p>
+                    <li>At least 8 Characters</li>
+                    <li>One lower case character</li>
+                    <li>One uppercase character</li>
+                    <li>One number, symbol and no space</li>
+                </ul>
                     <div class="form-group mb-4">
                         <input class="form-control" placeholder="Password" th:field="*{password}" type="password">
                         <span class="has-error" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></span>
