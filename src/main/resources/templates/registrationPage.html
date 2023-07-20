@@ -6,7 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/design.css}"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
 </head>
 <header>
@@ -65,52 +65,42 @@
         <h1 class="text-center">Welcome to Bakery </h1>
         <p class="text-center">New User Registration</p>
     </div>
-
     <div class="row justify-content-center m-5">
         <div class="col-6">
-
             <form class="form-sign-in" method="POST" th:action="@{/registration}" th:object="${userForm}">
-
                 <div class="form-group mb-4">
-                    <input autofocus="true" class="form-control" placeholder="First Name" th:field="*{first_name}"
+                    <input autofocus="true" class="form-control" placeholder="FirstName" th:field="*{first_name}"
                            type="text">
+                    <span class="has-error" th:errors="*{first_name}" th:if="${#fields.hasErrors('first_name')}"></span>
+                    <div class="form-group mb-4">
+                        <input autofocus="true" class="form-control" placeholder="LastName" th:field="*{last_name}"
+                               type="text">
+                        <span class="has-error" th:errors="*{last_name}"
+                              th:if="${#fields.hasErrors('last_name')}"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <input autofocus="true" class="form-control" placeholder="Email" th:field="*{email}"
+                               type="text">
+                        <span class="has-error" th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <input autofocus="true" class="form-control" placeholder="Username" th:field="*{username}"
+                               type="text">
+                        <span class="has-error" th:errors="*{username}" th:if="${#fields.hasErrors('username')}"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <input class="form-control" placeholder="Password" th:field="*{password}" type="password">
+                        <span class="has-error" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input class="form-control" placeholder="Confirm your password" th:field="*{passwordConfirm}"
+                               type="password">
+                        <span class="has-error" th:errors="*{passwordConfirm}"
+                              th:if="${#fields.hasErrors('passwordConfirm')}"></span>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
                 </div>
-                <div class="form-group mb-4">
-                    <input autofocus="true" class="form-control" placeholder="Last Name" th:field="*{last_name}"
-                           type="text">
-                </div>
-                <div class="form-group mb-4">
-                    <input autofocus="true" class="form-control" placeholder="Email" th:field="*{email}" type="text">
-                    <span class="has-error" th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></span>
-                    <span class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-
-                </div>
-
-
-                <div class="form-group mb-4">
-                    <input autofocus="true" class="form-control" placeholder="Username" th:field="*{username}" type="text">
-                    <span class="has-error" th:errors="*{username}" th:if="${#fields.hasErrors('username')}"></span>
-                    <span class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
-                </div>
-
-                <div class="form-group mb-4">
-                    <input class="form-control" placeholder="Password" th:field="*{password}" type="password">
-                    <span class="has-error" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></span>
-                    <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-
-                </div>
-                <div class="form-group mb-3">
-                    <input class="form-control" placeholder="Confirm your password" th:field="*{passwordConfirm}"
-                           type="password">
-                    <span class="has-error" th:errors="*{passwordConfirm}"
-                          th:if="${#fields.hasErrors('passwordConfirm')}"></span>
-                    <span class="error-message" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></span>
-
-                </div>
-
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
             </form>
-
         </div>
     </div>
 </div>

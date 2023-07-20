@@ -23,6 +23,14 @@ public class UserValidator implements Validator {
     @Override
     public void validate(Object object, Errors errors) {
         User user = (User) object;
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "first_name", "NotEmpty");
+        if (user.getFirst_name().length() < 2 || user.getFirst_name().length() > 20) {
+            errors.rejectValue("first_name", "Size.userForm.first_name");
+        }
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "last_name", "NotEmpty");
+        if (user.getLast_name().length() < 2 || user.getLast_name().length() > 20) {
+            errors.rejectValue("last_name", "Size.userForm.last_name");
+        }
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
         if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
             errors.rejectValue("username", "Size.userForm.username");
