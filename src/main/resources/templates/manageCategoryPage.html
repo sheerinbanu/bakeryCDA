@@ -21,7 +21,7 @@
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item"><a class="nav-link" href="/admin/orders">Orders</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link"
+                    <li class="nav-item"><a class="nav-link active"
                                             href="/admin/manageCategory">Categories</a></li>
                     <li class="nav-item"><a class="nav-link"
                                             href="/admin/manageProduct">Products</a></li>
@@ -29,7 +29,7 @@
                                             href="/admin/addAdmin">Admin Creation</a></li>
                     <li class="nav-item"><a class="nav-link" href="/admin/manageUser">Client Profiles</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link active" href="/">Customer Interface</a>
+                    <li class="nav-item"><a class="nav-link " href="/">Customer Interface</a>
                     </li>
                 </ul>
             </div>
@@ -69,6 +69,7 @@
             <tr>
                 <th>Id</th>
                 <th scope="col">Category</th>
+                <th scope="col">Image</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
             </tr>
@@ -77,6 +78,7 @@
             <tr class="table-active" th:each="category: ${categories}">
                 <th th:text="${category.id_category}">
                 <td th:text="${category.name}">
+                <td><img height="20%" width="20%" th:src="@{${category.picture}}" /></td>
                 <td>
                     <a
                             class="btn btn-success"
