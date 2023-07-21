@@ -1,8 +1,10 @@
 package com.ecommerce.bakery.Service;
 
+import com.ecommerce.bakery.Model.Category;
 import com.ecommerce.bakery.Model.Product;
 import com.ecommerce.bakery.Model.Selection;
 import com.ecommerce.bakery.Model.User;
+import com.ecommerce.bakery.Repository.CategoryRepository;
 import com.ecommerce.bakery.Repository.ProductRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +40,8 @@ public class ProductService {
     private UserService us;
     @Autowired
     private SelectionService ss;
+    @Autowired
+    private CategoryRepository cr;
 
 
     public Optional<Product> getProduct(final int id){
@@ -60,7 +65,7 @@ public class ProductService {
         return "products";
     }
 
-    public List<Product> getProductsByCategory(int categoryId) {
+    /*public List<Product> getProductsByCategory(int categoryId) {
         Iterable<Product> allProducts = getAllProduct();
         List<Product> categoryProducts = new ArrayList<>();
         for (Product product : allProducts) {
@@ -69,6 +74,21 @@ public class ProductService {
             }
         }
         return categoryProducts;
+    }*/
+    public List<Product> getProductsByCategoryId(int categoryId) {
+        // First, find the category by its ID
+        Category category = cr.findById(categoryId).orElse(null);
+
+        if (category == null) {
+            // If the category doesn't exist, you might want to handle this situation accordingly.
+            // For example, you can throw an exception or return an empty list.
+            return Collections.emptyList();
+        }
+
+        // If the category exists, fetch its related products
+        List<Product> products = pr.findByCategory(category);
+
+        return products;
     }
     public String submitSelectionForm(@ModelAttribute("selectionForm") Selection selection, User user, Product product, Authentication authentication, Model model, BindingResult bindingResult) {
         int currentUserId = us.findByUsername(authentication.getName()).getId_user();

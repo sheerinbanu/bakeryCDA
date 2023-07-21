@@ -76,7 +76,10 @@
             <div class="card-body">
                 <h5 class="card-title" style="text-align: center" th:text="${category.name}"></h5>
             </div>
-            <a href="#"><img alt="category name" class="card-img-top" th:src="${category.picture}"></a>
+            <a th:href="@{/showProductsByCategory/{categoryId}(categoryId=${category.id_category})}">
+                <img alt="category name" class="card-img-top" th:src="${category.picture}">
+            </a>
+
         </div>
     </div>
 </div>
