@@ -71,37 +71,12 @@
     </div>
 </div>
 <div class="container p-5">
-    <div class="row row-cols-1 row-cols-md-3">
-        <div class="col mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title" style="text-align: center"><b>Baking Pans</b></h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
-                </div>
-                <a href="/bakingPans"><img alt="baking pan" class="card-img-top" src="../images/apple_cake.jpg"></a>
+    <div class="row justify-content-around">
+        <div class="card mb-3" style="width: 18rem;" th:each="category: ${categories}">
+            <div class="card-body">
+                <h5 class="card-title" style="text-align: center" th:text="${category.name}"></h5>
             </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title" style="text-align: center"><b>Food decoration</b></h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
-                </div>
-                <a href="/foodDecoration"><img alt="food decoration" class="card-img-top"
-                                               src="../images/decoration.jpg"></a>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title" style="text-align: center"><b>chocolates</b></h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
-                </div>
-                <a href="/chocolates"><img alt="chocolate" class="card-img-top" src="../images/chocolates.jpg"></a>
-            </div>
+            <a href="#"><img alt="category name" class="card-img-top" th:src="${category.picture}"></a>
         </div>
     </div>
 </div>
