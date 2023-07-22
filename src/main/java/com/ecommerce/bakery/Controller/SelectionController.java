@@ -12,7 +12,7 @@ public class SelectionController {
     @Autowired
     private SelectionService ss;
     @GetMapping("/cart/{id}")
-    public String DeleteProduct(@PathVariable(name = "id") int id, Model model) {
+    public String DeleteProduct(@PathVariable(name = "id") int id, Model model) throws Exception {
         ss.deleteSelection(id);
         model.addAttribute("messageCartDel", "Your product has been deleted!");
         return "redirect:/cart";

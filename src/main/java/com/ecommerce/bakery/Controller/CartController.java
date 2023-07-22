@@ -23,7 +23,7 @@ public class CartController {
     }
 
     @PostMapping("/cart")
-    public String createOrder(Cart cart, Order order, Selection selection, User user, Authentication authentication, Model model, BindingResult bindingResult) {
+    public String createOrder(Cart cart, Order order, Selection selection, User user, Authentication authentication, Model model, BindingResult bindingResult) throws Exception {
         return cs.submitCartForm(cart, order, selection, user, authentication, model, bindingResult);
     }
 }

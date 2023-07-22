@@ -90,16 +90,15 @@
                 <div class="card-body">
                     <div class="form-group pb-3">
                         <label for="name">Quantity</label>
-                        <select name="quantity">
-                            <option th:each="quantity :${quantityList}"
-                                    th:text="${quantity}"></option>
-                        </select>
+                        <div class="d-flex">
+                            <select name="quantity" class="form-control">
+                                <option th:each="quantity :${quantityList}" th:text="${quantity}"></option>
+                            </select>
+                            <button class="btn btn-sm btn-danger ms-2" type="submit">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </button>
+                        </div>
                         <input name="product" th:value="${product.id_product}" type="hidden">
-                    </div>
-                    <div class="row">
-                        <button class="btn btn-danger" type="submit">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                        </button>
                     </div>
                 </div>
             </form>

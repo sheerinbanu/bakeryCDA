@@ -19,7 +19,7 @@ public class CategoryController {
     private CategoryService cs;
 
     @GetMapping("/productGeneralPage")
-    public String showProductGeneralPage(Model model){
+    public String showProductGeneralPage(Model model) throws Exception {
         return cs.getListCategory(model);
     }
 }

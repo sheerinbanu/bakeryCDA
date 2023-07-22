@@ -34,15 +34,14 @@ public class ProductController {
     @Autowired
     private SelectionService ss;
     @GetMapping("/showProductsByCategory/{categoryId}")
-    public String showProductsByCategory(@PathVariable int categoryId, Model model) {
+    public String showProductsByCategory(@PathVariable int categoryId, Model model) throws Exception {
         List<Product> products = ps.getProductsByCategoryId(categoryId);
         model.addAttribute("products", products);
         model.addAttribute("quantityList", quantityList);
         return "productsPage";
     }
     @PostMapping("/showProductsByCategory/{categoryId}")
-    public String addSelectToCart(Selection selection, User user, Product product, Authentication authentication, Model model, BindingResult bindingResult, @PathVariable String categoryId) {
+    public String addSelectToCart(Selection selection, User user, Product product, Authentication authentication, Model model, BindingResult bindingResult, @PathVariable String categoryId) throws Exception {
         return ps.submitSelectionForm(selection, user, product, authentication, model, bindingResult);
     }
-
 }

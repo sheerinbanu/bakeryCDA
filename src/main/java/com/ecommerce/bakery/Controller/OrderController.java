@@ -16,11 +16,11 @@ public class OrderController {
     private OrderService os;
 
     @GetMapping({"/orderHistory"})
-    public String orderHistory(Model model, Authentication authentication) {
+    public String orderHistory(Model model, Authentication authentication) throws Exception {
         return os.getAllOrdersByUser(authentication, model);
     }
     @GetMapping("/orderHistory/{id}")
-    public String getSelectionByOrder(Model model, @ModelAttribute("selection") Order order, @PathVariable(name = "id") int Id_order){
+    public String getSelectionByOrder(Model model, @ModelAttribute("selection") Order order, @PathVariable(name = "id") int Id_order) throws Exception {
         os.getDetailSelectionById(Id_order, model);
         return "orderDetailsPage";
     }
