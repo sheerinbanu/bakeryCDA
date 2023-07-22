@@ -80,3 +80,7 @@ button{
     height: 150px;
     width: 100%;
 }
+.form-sign-in {
+    max-width: 300px;
+    margin: auto;
+}
