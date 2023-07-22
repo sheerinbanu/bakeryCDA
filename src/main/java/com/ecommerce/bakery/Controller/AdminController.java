@@ -33,12 +33,11 @@ public class AdminController {
     private OrderRepository or;
 
     @GetMapping("/admin/addAdmin")
-    public String admin(@ModelAttribute("userForm") User userForm) {
+    public String admin(@ModelAttribute("userForm") User userForm) throws Exception {
         return "adminPage";
     }
-
     @PostMapping("/admin/addAdmin")
-    public String admin(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+    public String admin(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) throws Exception {
         userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
             return "adminPage";
@@ -49,7 +48,7 @@ public class AdminController {
         return "adminPage";
     }
     @GetMapping("/admin/manageProduct")
-    public String ManageController(Model model) {
+    public String ManageController(Model model) throws Exception {
         model.addAttribute("products", ps.getAllProduct());
         return "manageProductPage";
     }
@@ -58,21 +57,19 @@ public class AdminController {
         model.addAttribute("categories", cs.getAllCategory());
         return "addProductPage";
     }
-
     @PostMapping("/admin/addProduct")
     public String RegisterProduct(@ModelAttribute("product") Product product) throws Exception {
         ps.insertProduct(product);
         return "redirect:/admin/manageProduct";
     }
-
     @GetMapping("/admin/deleteProduct/{id}")
-    public String DeleteProduct(@PathVariable(name = "id") int id) {
+    public String DeleteProduct(@PathVariable(name = "id") int id) throws Exception {
         ps.deleteProduct(id);
         return "redirect:/admin/manageProduct";
     }
 
     @GetMapping("/admin/updateProduct/{id}")
-    public String UpdateProduct(Model model, @ModelAttribute("product") Product product, @PathVariable(name = "id") int productId, BindingResult bindingResult) {
+    public String UpdateProduct(Model model, @ModelAttribute("product") Product product, @PathVariable(name = "id") int productId, BindingResult bindingResult) throws Exception {
         Optional<Product> product1 = ps.getProduct(productId);
         if (product1.isPresent()) {
             Product product2 = product1.get();
@@ -84,26 +81,26 @@ public class AdminController {
         return "addProductPage";
     }
     @GetMapping("/admin/manageCategory")
-    public String ManageCategory(Model model){
+    public String ManageCategory(Model model) throws Exception {
         model.addAttribute("categories", cs.getAllCategory());
         return "manageCategoryPage";
     }
     @GetMapping("/admin/addCategory")
-    public String AddCategory(Model model, @ModelAttribute("category")Category category){
+    public String AddCategory(Model model, @ModelAttribute("category")Category category) throws Exception {
         return "addCategoryPage";
     }
     @PostMapping("/admin/addCategory")
-    public String RegisterCategory(@ModelAttribute("category") Category category){
+    public String RegisterCategory(@ModelAttribute("category") Category category) throws Exception {
         cs.insertCategory(category);
         return "redirect:/admin/manageCategory";
     }
     @GetMapping("/admin/deleteCategory/{id}")
-    public String DeleteCategory(@PathVariable(name = "id") int id) {
+    public String DeleteCategory(@PathVariable(name = "id") int id) throws Exception {
         cs.deleteCategory(id);
         return "redirect:/admin/manageCategory";
     }
     @GetMapping("/admin/updateCategory/{id}")
-    public String updateCategory(Model model, @PathVariable("id") int categoryId) {
+    public String updateCategory(Model model, @PathVariable("id") int categoryId) throws Exception {
         Optional<Category> categoryOptional = cs.getCategory(categoryId);
         if (categoryOptional.isPresent()) {
             Category category = categoryOptional.get();
@@ -116,40 +113,40 @@ public class AdminController {
         return "addCategoryPage";
     }
     @GetMapping({"/admin/manageUser"})
-    public String getAllUsersProfile(Model model) {
+    public String getAllUsersProfile(Model model) throws Exception {
         model.addAttribute("users", userService.getAllUsers());
         return "manageUserPage";
     }
     @GetMapping("/admin/updateUser/{id}")
-    public String getUser(Model model, @ModelAttribute("user")User user, @PathVariable(name = "id")  int id_user, BindingResult bindingResult){
+    public String getUser(Model model, @ModelAttribute("user")User user, @PathVariable(name = "id")  int id_user, BindingResult bindingResult) throws Exception {
         Optional<User> user1 = userService.getUser(id_user);
         model.addAttribute("user", user1);
         return "updateUserPage";
     }
     @PostMapping("/admin/updateUser/{id}")
-   public String updateUser(@PathVariable("id") int id, @ModelAttribute User user) {
+   public String updateUser(@PathVariable("id") int id, @ModelAttribute User user) throws Exception {
        user.setId(id); // Set the user ID from the path variable
        userService.updateUser(user);
        userService.insertUser(user);
        return "redirect:/admin/manageUser";
    }
     @GetMapping("/admin/deleteUser/{id}")
-    public String DeleteUser(@PathVariable(name = "id") int id) {
+    public String DeleteUser(@PathVariable(name = "id") int id) throws Exception {
         userService.removeUser(id);
         return "redirect:/admin/manageUser";
     }
     @GetMapping("/admin/orders")
-    public String ShowOrders(@ModelAttribute("orderForm") Order order, Model model) {
+    public String ShowOrders(@ModelAttribute("orderForm") Order order, Model model) throws Exception {
         model.addAttribute("orders", os.getAllOrder());
         return "adminOrdersPage";
     }
     @GetMapping("/admin/orders/{id}")
-    public String getSelectionByOrder(Model model, @ModelAttribute("selection") Order order, @PathVariable(name = "id") int Id_order){
+    public String getSelectionByOrder(Model model, @ModelAttribute("selection") Order order, @PathVariable(name = "id") int Id_order) throws Exception {
         os.getDetailSelectionById(Id_order, model);
         return "adminOrdersDetailsPage";
     }
     @PostMapping("/admin/orders")
-    public String submitCartForm(@RequestParam("orderId") int orderId, @RequestParam("orderDate") String orderDate, @ModelAttribute("orderForm") Order order, Model model) {
+    public String submitCartForm(@RequestParam("orderId") int orderId, @RequestParam("orderDate") String orderDate, @ModelAttribute("orderForm") Order order, Model model) throws Exception {
         order.setId_order(orderId);
         order.setOrder_date(orderDate);
         order.setValidate(true);
