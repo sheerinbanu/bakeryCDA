@@ -81,7 +81,7 @@
                   th:object="${product}">
                 <div class="mb-3">
                     <label class="form-label" for="name">Name of the product</label>
-                    <input class="form-control" placeholder="All Star" th:field="*{name}"
+                    <input class="form-control"  th:field="*{name}"
                            type="text"/>
                 </div>
                 <div class="mb-3">
@@ -102,8 +102,9 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="description">Description</label>
-                    <textarea th:field="*{description}"></textarea>
+                    <textarea th:field="*{description}" class="enlarged-textarea"></textarea>
                 </div>
+
                 <input class="form-control" th:field="*{id_product}" type="hidden"/>
                 <button class="btn btn-primary" type="submit">Save</button>
             </form>

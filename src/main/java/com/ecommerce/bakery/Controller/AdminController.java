@@ -54,13 +54,13 @@ public class AdminController {
         return "manageProductPage";
     }
     @GetMapping("/admin/addProduct")
-    public String AddProduct(Model model, @ModelAttribute("product") Product product) {
+    public String AddProduct(Model model, @ModelAttribute("product") Product product) throws Exception {
         model.addAttribute("categories", cs.getAllCategory());
         return "addProductPage";
     }
 
     @PostMapping("/admin/addProduct")
-    public String RegisterProduct(@ModelAttribute("product") Product product) {
+    public String RegisterProduct(@ModelAttribute("product") Product product) throws Exception {
         ps.insertProduct(product);
         return "redirect:/admin/manageProduct";
     }

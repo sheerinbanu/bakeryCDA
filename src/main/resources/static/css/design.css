@@ -75,5 +75,8 @@ button{
 }
 .has-error{
     color:red;
-
+}
+.enlarged-textarea {
+    height: 150px;
+    width: 100%;
 }
