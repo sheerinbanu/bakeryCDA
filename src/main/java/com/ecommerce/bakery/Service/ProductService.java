@@ -78,18 +78,16 @@ public class ProductService {
     public List<Product> getProductsByCategoryId(int categoryId) {
         // First, find the category by its ID
         Category category = cr.findById(categoryId).orElse(null);
-
         if (category == null) {
             // If the category doesn't exist, you might want to handle this situation accordingly.
             // For example, you can throw an exception or return an empty list.
             return Collections.emptyList();
         }
-
         // If the category exists, fetch its related products
         List<Product> products = pr.findByCategory(category);
-
         return products;
     }
+
     public String submitSelectionForm(@ModelAttribute("selectionForm") Selection selection, User user, Product product, Authentication authentication, Model model, BindingResult bindingResult) {
         int currentUserId = us.findByUsername(authentication.getName()).getId_user();
         if (product == null) {

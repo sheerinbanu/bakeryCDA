@@ -30,9 +30,11 @@
                        data-bs-toggle="dropdown"
                        href="#" role="button">Products</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/bakingPans">Baking pans</a>
-                        <a class="dropdown-item" href="/foodDecoration">Food decoration</a>
-                        <a class="dropdown-item" href="/chocolates">Chocolates</a>
+                        <ul class="list-styled" th:each="category: ${categories}">
+                            <li><a class="dropdown-item"
+                                   th:href="@{/showProductsByCategory/{categoryId}(categoryId=${category.id_category})}"
+                                   th:text="${category.name}"></a></li>
+                        </ul>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/productGeneralPage">All categories</a>
                     </div>
@@ -92,7 +94,7 @@
                             <option th:each="quantity :${quantityList}"
                                     th:text="${quantity}"></option>
                         </select>
-                        <input type="hidden" name="product" th:value="${product.id_product}" >
+                        <input name="product" th:value="${product.id_product}" type="hidden">
                     </div>
                     <div class="row">
                         <button class="btn btn-danger" type="submit">
