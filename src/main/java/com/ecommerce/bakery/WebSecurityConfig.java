@@ -11,21 +11,27 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.security.SecureRandom;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
     @Qualifier("userService")
     @Autowired
     private UserDetailsService userDetailsService;
+
+    //In the context of BCryptPasswordEncoder, the SecureRandom instance is responsible for generating the random salt used during the password hashing process. This salt is then combined with the user's password before being passed to the bcrypt algorithm for hashing.
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2Y, 12);
+        // BCryptPasswordEncoder with the provided version, strength, and SecureRandom instance
+        return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2Y, 12, new SecureRandom());
     }
     @Bean
     SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(requests -> requests.requestMatchers("/", "/registration", "/css/**", "/js/**", "/images/**").permitAll().requestMatchers("/admin/**").hasAuthority("ADMIN").anyRequest().authenticated()).formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/productGeneralPage", true).permitAll()).logout(logout -> logout.permitAll());
         return http.build();
     }
+
     @Autowired
     void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder.userDetailsService(userDetailsService);
