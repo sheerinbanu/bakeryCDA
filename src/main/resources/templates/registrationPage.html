@@ -102,7 +102,8 @@
                     <span class="has-error" th:errors="*{passwordConfirm}"
                           th:if="${#fields.hasErrors('passwordConfirm')}"></span>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+                <div th:if="${message}" th:text="${message}" style="color: green;"></div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         </div>
         </form>
     </div>
