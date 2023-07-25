@@ -78,10 +78,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="box">
-                        <div class="box-title">
-                            <h5>Selection in your cart</h5>
-                        </div>
-                        <div class="box-content" th:each="selection: ${selections}">
+                        <div class="box-content" >
                             <div class="table-responsive">
                                 <table class="table shopping-cart-table">
                                     <thead>
@@ -92,10 +89,9 @@
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Total</th>
                                         <th scope="col">Remove</th>
-
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody th:each="selection: ${selections}">
                                     <tr class="table-light">
                                         <td width="90">
                                             <div class="cart-product-imitation">
@@ -104,19 +100,18 @@
                                             </div>
                                         </td>
                                         <td class="desc">
-                                            <h4>
+                                            <h6>
                                                 <a class="text-navy" href="#"
                                                    th:text="${selection.product.name}"></a>
-                                            </h4>
-
+                                            </h6>
                                         </td>
                                         <td>
-                                            <h4 th:text="${selection.product.unit_price}"></h4>
+                                            <h6 th:text="${selection.product.unit_price}"></h6>
                                         </td>
                                         <td><input class="form-control"
                                                    disabled th:value="${selection.quantity}"></td>
                                         <td>
-                                            <h4 th:text="${selection.total+' '+'&euro;'}"></h4>
+                                            <h6 th:text="${selection.total +' '+'&euro;'}"></h6>
                                         </td>
                                         <td><div class="m-t-sm">
                                             <a class="btn btn-primary pull-right"
@@ -136,24 +131,25 @@
                         <form class="form-sign-in" method="POST" th:action="@{/cart}" th:object="${cartForm}">
                             <input name="user" th:value="${person.id_user}" type="hidden">
                             <input name="total_price" th:value="${finalPrice}" type="hidden">
-                            <div class="box-content">
-                                <button class="btn btn-primary pull-right" type="submit">
-                                    <i class="fa fa fa-shopping-cart"></i> Order
-                                </button>
-                                <a class="btn btn-white" href="/productGeneralPage"><i
-                                        class="fa fa-arrow-left"></i> Continue Shopping</a>
-                            </div>
-                        </form>
+                          </form>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="box">
                         <div class="box-title">
-                            <h5>Cart Summary</h5>
+                            <h5 style="text-align: center">Cart Summary</h5>
                         </div>
-                        <div class="box-content">
-                            <span> Total en Euro € </span>
-                            <h2 class="font-bold" th:text="${finalPrice}"></h2>
+                        <div class="box-content" style="text-align: center">
+                            <div class="block">
+                                <div class="col">
+                                    <span><b>Total</b></span>
+                                </div>
+                                <div class="col" >
+                                    <h3 class="font-bold"  th:text="${finalPrice  +' '+'&euro;'}" style="color: red; text-align: center"></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                             <hr>
                             <span class="text-muted small"> *All prices are VAT excluded</span>
                             <hr>
@@ -162,25 +158,15 @@
                                 <input name="total_price" th:value="${finalPrice}" type="hidden">
                                 <div class="m-t-sm">
                                     <div class="btn-group">
-                                        <button class="btn btn-primary btn-sm" type="submit">
+                                        <button class="btn btn-success btn-lg" type="submit">
                                             <i class="fa fa-shopping-cart"></i> Order
                                         </button>
-                                        <a class="btn btn-white btn-sm" href="/productGeneralPage"> Continue Shopping </a>
+                                        <a class="btn btn-white btn-sm mt-lg-3 mt-md-0" href="/productGeneralPage"> <h6><b> Continue Shopping</b></h6></a>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <div class="box">
-                        <div class="box-title">
-                            <h5>Support</h5>
-                        </div>
-                        <div class="box-content text-center">
-                            <h3>
-                                <i class="fa fa-phone"></i> +44 100 783 001
-                            </h3>
-                            <span class="small"> Please contact us for further queries.We are 24/7 at your disposal. </span>
-                        </div>
                     </div>
                 </div>
             </div>
