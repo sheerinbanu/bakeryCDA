@@ -84,8 +84,19 @@
                         <div class="box-content" th:each="selection: ${selections}">
                             <div class="table-responsive">
                                 <table class="table shopping-cart-table">
-                                    <tbody>
+                                    <thead>
                                     <tr>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Remove</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="table-light">
                                         <td width="90">
                                             <div class="cart-product-imitation">
                                                 <img height="110%" th:src="${selection.product.picture}"
@@ -93,31 +104,30 @@
                                             </div>
                                         </td>
                                         <td class="desc">
-                                            <h3>
+                                            <h4>
                                                 <a class="text-navy" href="#"
                                                    th:text="${selection.product.name}"></a>
-                                            </h3>
-                                            <div class="m-t-sm">
-                                                <a class="btn btn-primary pull-right"
-                                                   th:href="@{'/cart/' + ${selection.id_selection}}"
-                                                   type="submit" onclick="showPopup()"> Delete the
-                                                    selection</a>
-                                            </div>
-                                            <script>
-                                                function showPopup() {
-                                                    alert("Are you sure to delete your selection?");
-                                                }
-                                            </script>
+                                            </h4>
+
                                         </td>
                                         <td>
-                                            <s class="small text-muted" th:text="${selection.product.unit_price}"></s>
+                                            <h4 th:text="${selection.product.unit_price}"></h4>
                                         </td>
                                         <td><input class="form-control"
                                                    disabled th:value="${selection.quantity}"></td>
                                         <td>
-                                            <h4 th:text="${selection.total}"></h4>
-                                            <h5>€</h5>
+                                            <h4 th:text="${selection.total+' '+'&euro;'}"></h4>
                                         </td>
+                                        <td><div class="m-t-sm">
+                                            <a class="btn btn-primary pull-right"
+                                               th:href="@{'/cart/' + ${selection.id_selection}}"
+                                               type="submit" onclick="showPopup()"><i class="fa-solid fa-xmark"></i></a>
+                                        </div>
+                                            <script>
+                                                function showPopup() {
+                                                    alert("Are you sure to remove your selection?");
+                                                }
+                                            </script></td>
                                     </tr>
                                     </tbody>
                                 </table>

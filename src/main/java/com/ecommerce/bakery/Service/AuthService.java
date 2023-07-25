@@ -19,7 +19,6 @@ public class AuthService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
     public void createNewUser(User user) {
-        // Encode the user's password using the BCryptPasswordEncoder
         // Remove any semicolons from the password before encoding
         String password = removeSemicolons(user.getPassword());
         user.setPassword(bCryptPasswordEncoder.encode(password));
@@ -28,7 +27,6 @@ public class AuthService {
         userRepository.save(user);
     }
     public void createNewAdmin(User user) {
-        // Encode the admin's password using the BCryptPasswordEncoder
         // Remove any semicolons from the password before encoding
         String password = removeSemicolons(user.getPassword());
         user.setPassword(bCryptPasswordEncoder.encode(password));
