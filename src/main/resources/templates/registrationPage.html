@@ -59,7 +59,7 @@
 </header>
 <div class="container">
     <div class="p-5">
-        <h1 class="text-center">New User Registration </h1>
+        <h1 class="text-center">New User Registration</h1>
     </div>
     <div class="row justify-content-center m-5">
         <div class="col-6">
@@ -72,8 +72,7 @@
                 <div class="form-group mb-4">
                     <input autofocus="true" class="form-control" placeholder="LastName" th:field="*{last_name}"
                            type="text">
-                    <span class="has-error" th:errors="*{last_name}"
-                          th:if="${#fields.hasErrors('last_name')}"></span>
+                    <span class="has-error" th:errors="*{last_name}" th:if="${#fields.hasErrors('last_name')}"></span>
                 </div>
                 <div class="form-group mb-4">
                     <input autofocus="true" class="form-control" placeholder="Email" th:field="*{email}"
@@ -88,9 +87,10 @@
                 <ul style="color: gray">
                     <p>Create your password</p>
                     <li>At least 8 Characters</li>
-                    <li>One lower case character</li>
+                    <li>One lowercase character</li>
                     <li>One uppercase character</li>
-                    <li>One number, symbol and no space</li>
+                    <li>One number, symbol, and no space</li>
+                    <li><b>You cannot use this symbol ; for the password creation</b></li>
                 </ul>
                 <div class="form-group mb-4">
                     <input class="form-control" placeholder="Password" th:field="*{password}" type="password">
@@ -99,20 +99,18 @@
                 <div class="form-group mb-3">
                     <input class="form-control" placeholder="Confirm your password" th:field="*{passwordConfirm}"
                            type="password">
-                    <span class="has-error" th:errors="*{passwordConfirm}"
-                          th:if="${#fields.hasErrors('passwordConfirm')}"></span>
+                    <span class="has-error" th:errors="*{passwordConfirm}" th:if="${#fields.hasErrors('passwordConfirm')}"></span>
                 </div>
                 <div th:if="${message}" th:text="${message}" style="color: green;"></div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+            </form>
         </div>
-        </form>
     </div>
-</div>
 </div>
 <script crossorigin="anonymous"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<footer class="fixed-bottom">
+<footer  style="height: 50px;">
     <div class="container-fluid text-center p-3" style="background-color:rgb(70,51,47);">
         © 2020 Copyright:
         <a class="text-light" href="https://mdbootstrap.com/">BAKERY.com</a>

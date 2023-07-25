@@ -16,7 +16,7 @@ public class UserValidator implements Validator {
     private UserService userService;
 
     private static final String EMAIL_REGEX ="^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-    private static final String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8,20}$";
+    private static final String passwordPattern = "^(?!.*;)(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8,20}$";
     /*
     *  It allows numeric values from 0 to 9.
        Both uppercase and lowercase letters from a to z are allowed.
