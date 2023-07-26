@@ -92,9 +92,7 @@
                     <div class="form-group pb-3">
                         <label for="name">Quantity</label>
                         <div class="d-flex">
-                            <select name="quantity" class="form-control">
-                                <option th:each="quantity :${quantityList}" th:text="${quantity}"></option>
-                            </select>
+                            <input type="number" name="quantity" class="form-control"/>
                             <button class="btn btn-sm btn-danger ms-2" type="submit">
                                 <i class="fa-solid fa-basket-shopping"></i>
                             </button>

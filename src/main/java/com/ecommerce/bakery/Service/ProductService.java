@@ -90,11 +90,12 @@ public class ProductService {
 
     public String submitSelectionForm(@ModelAttribute("selectionForm") Selection selection, User user, Product product, Authentication authentication, Model model, BindingResult bindingResult) {
         int currentUserId = us.findByUsername(authentication.getName()).getId_user();
+
         if (product == null) {
-            // Handle the case where the product is null (you can return an error message, redirect, or perform other appropriate actions)
             return "redirect:/errorPage";
         }
-        double finalPrice = (product.getUnit_price() * selection.getQuantity());
+        int quantity = selection.getQuantity();
+        double finalPrice = (product.getUnit_price() * quantity);
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         finalPrice = Double.parseDouble(decimalFormat.format(finalPrice));
         selection.setTotal(finalPrice);

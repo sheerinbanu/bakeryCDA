@@ -19,16 +19,7 @@ import java.util.List;
 
 @Controller
 public class ProductController {
-    static List<Integer> quantityList = null;
 
-    static {
-        quantityList = new ArrayList<>();
-        quantityList.add(1);
-        quantityList.add(2);
-        quantityList.add(3);
-        quantityList.add(4);
-        quantityList.add(5);
-    }
     @Autowired
     ProductService ps;
     @Autowired
@@ -37,7 +28,6 @@ public class ProductController {
     public String showProductsByCategory(@PathVariable int categoryId, Model model) throws Exception {
         List<Product> products = ps.getProductsByCategoryId(categoryId);
         model.addAttribute("products", products);
-        model.addAttribute("quantityList", quantityList);
         return "productsPage";
     }
     @PostMapping("/showProductsByCategory/{categoryId}")
