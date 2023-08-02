@@ -9,70 +9,73 @@
 <script th:src="@{/js/index.js}"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-    <div class="container-fluid">
-        <img alt="cake" height="50px" src="../images/bakeLogo.PNG" width="50px">
-        <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler"
-                data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/">Home
-                        <span class="visually-hidden">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
-                       data-bs-toggle="dropdown"
-                       href="#" role="button" >Products</a>
-                    <div class="dropdown-menu">
-                        <ul class="list-styled" th:each="category: ${categories}">
-                            <li><a class="dropdown-item"
-                                   th:href="@{/showProductsByCategory/{categoryId}(categoryId=${category.id_category})}"
-                                   th:text="${category.name}"></a></li>
-                        </ul>
-                      </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Recipes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-                <li sec:authorize-url="/admin/" class="nav-item">
-                    <a class="nav-link" id="admin" th:href="@{/admin/orders}" style="color: mediumvioletred">Interface-Admin</a>
-                </li>
-            </ul>
-        </div>
-        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-            <div class="p-3" style="display: flex; flex-direction: column; align-items: center;">
-                <a href="/profile">
-                    <img src="../images/profile.png">
-                </a>
-                <p class="text-small">Profile</p>
-            </div>
-            <div class="p-3" style="display: flex; flex-direction: column; align-items: center;">
-                <a href="/cart">
-                    <i aria-hidden="true" class="fa fa-shopping-cart"></i>
-                </a>
-                <p class="text-small">Cart</p>
-            </div>
-            <div class="p-3" style="display: flex; flex-direction: column; align-items: center;">
-            <button class="btn btn-outline-danger my-2 my-sm-0" style="width: 25px; height: 25px">
-                <a onclick="document.forms['logoutForm'].submit()">
-                    <i aria-hidden="true" class="fa fa-sign-out" style="text-align: center"></i>
-                </a>
+<header>
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <img alt="cake" height="50" src="../images/bakeLogo.PNG" width="50">
+            <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <p class="text-small">Log out</p>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                           data-bs-toggle="dropdown"
+                           href="#" role="button">Products</a>
+                        <div class="dropdown-menu">
+                            <ul class="list-unstyled" th:each="category: ${categories}">
+                                <li><a class="dropdown-item"
+                                       th:href="@{/showProductsByCategory/{categoryId}(categoryId=${category.id_category})}"
+                                       th:text="${category.name}"></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Recipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li sec:authorize-url="/admin/" class="nav-item">
+                        <a class="nav-link" id="admin" th:href="@{/admin/orders}" style="color: mediumvioletred">Interface-Admin</a>
+                    </li>
+                </ul>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+                <div class="p-3" style="display: flex; flex-direction: column; align-items: center;">
+                    <a href="/profile">
+                        <img src="../images/profile.png" alt="Profile">
+                    </a>
+                    <p class="text-small"><span sec:authorize="isAuthenticated()"></span>
+                        <span sec:authentication="name" style="color: white"></span></p>
+                </div>
+                <div class="p-3" style="display: flex; flex-direction: column; align-items: center;">
+                    <a href="/cart">
+                        <i aria-hidden="true" class="fa fa-shopping-cart"></i>
+                    </a>
+                    <p class="text-small">Cart</p>
+                </div>
+                <div class="p-3" style="display: flex; flex-direction: column; align-items: center;">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" style="width: 25px; height: 25px">
+                        <a onclick="document.forms['logoutForm'].submit()">
+                            <i aria-hidden="true" class="fa fa-sign-out" style="text-align: center"></i>
+                        </a>
+                    </button>
+                    <p class="text-small">Log out</p>
+                </div>
             </div>
         </div>
-</nav>
+    </nav>
 </header>
 <div class="container">
     <div class="row justify-content-center">
