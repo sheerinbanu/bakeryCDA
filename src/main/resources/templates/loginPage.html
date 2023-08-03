@@ -75,6 +75,9 @@
                 </div>
                 <!-- Login Form -->
                 <form class="form-sign-in" method="POST" th:action="@{/login}">
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <p th:if="${loginError}" class="error" style="color: red;text-align: center;">Wrong user email or
+                            password !</p></div>
                     <div class="mb-4">
                         <div class="alert alert-success" role="alert" th:if="${message}" th:text="${message}"></div>
                         <div class="alert alert-danger" role="alert" th:if="${error}" th:text="${error}"></div>
