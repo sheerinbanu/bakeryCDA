@@ -18,8 +18,8 @@ public class CategoryController {
     @Autowired
     private CategoryService cs;
 
-    @GetMapping("/productGeneralPage")
-    public String showProductGeneralPage(Model model) throws Exception {
+    @GetMapping("/allCategories")
+    public String showAllCategories(Model model) throws Exception {
         return cs.getListCategory(model);
     }
 }

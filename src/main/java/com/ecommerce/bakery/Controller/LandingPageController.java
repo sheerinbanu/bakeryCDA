@@ -10,4 +10,6 @@ public class LandingPageController {
     public String homePage(Model model)throws Exception {
         return "landingPage";
     }
+
+
 }
