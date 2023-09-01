@@ -28,7 +28,7 @@ public class ProductController {
     public String showProductsByCategory(@PathVariable int categoryId, Model model) throws Exception {
         List<Product> products = ps.getProductsByCategoryId(categoryId);
         model.addAttribute("products", products);
-        return "productsPage";
+        return "productGeneralPage";
     }
     @PostMapping("/showProductsByCategory/{categoryId}")
     public String addSelectToCart(Selection selection, User user, Product product, Authentication authentication, Model model, BindingResult bindingResult, @PathVariable String categoryId) throws Exception {
