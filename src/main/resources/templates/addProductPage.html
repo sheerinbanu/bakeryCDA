@@ -81,12 +81,12 @@
             <form method="POST" th:action="@{/admin/addProduct}"
                   th:object="${product}">
                 <div class="mb-3">
-                    <label class="form-label" for="name">Name of the product</label>
+                    <label class="form-label" htmlfor="name">Name of the product</label>
                     <input class="form-control"  th:field="*{name}"
                            type="text"/>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="unit_price">Suggested Price</label>
+                    <label class="form-label" htmlfor="unit_price">Suggested Price</label>
                     <input class="form-control" placeholder="200" step="0.01"
                            th:field="*{unit_price}" type="number">
                 </div>
@@ -98,11 +98,11 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="url">Photo URL</label>
+                    <label class="form-label" htmlfor="url">Photo URL</label>
                     <input class="form-control" th:field="*{picture}" type="text"/>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="description">Description</label>
+                    <label class="form-label" htmlfor="description">Description</label>
                     <textarea th:field="*{description}" class="enlarged-textarea"></textarea>
                 </div>
 
