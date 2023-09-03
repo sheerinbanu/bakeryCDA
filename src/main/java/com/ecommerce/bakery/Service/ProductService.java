@@ -90,7 +90,6 @@ public class ProductService {
 
     public String submitSelectionForm(@ModelAttribute("selectionForm") Selection selection, User user, Product product, Authentication authentication, Model model, BindingResult bindingResult) {
         int currentUserId = us.findByUsername(authentication.getName()).getId_user();
-
         if (product == null) {
             return "redirect:/errorPage";
         }
@@ -101,7 +100,7 @@ public class ProductService {
         selection.setTotal(finalPrice);
         selection.setId_user(currentUserId);
         ss.insertSelection(selection);
-        return "redirect:/productGeneralPage";
+        return "redirect:/cart";
     }
 }
 
