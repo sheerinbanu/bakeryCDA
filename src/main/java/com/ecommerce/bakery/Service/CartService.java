@@ -65,7 +65,8 @@ public class CartService {
             PreparedStatement statement = con.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             double sum = 0;
-            if (resultSet.next()) {
+
+           if (resultSet.next()) {
                 sum = resultSet.getDouble(1);
                 System.out.println(sum);
             }

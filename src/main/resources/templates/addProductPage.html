@@ -61,7 +61,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4" style="--bs-breadcrumb-divider: '>';">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="/admin/manageProduct">Product Management
                     </a></li>
@@ -82,13 +82,12 @@
                   th:object="${product}">
                 <div class="mb-3">
                     <label class="form-label" htmlfor="name">Name of the product</label>
-                    <input class="form-control"  th:field="*{name}"
+                    <input class="form-control" th:field="*{name}"
                            type="text"/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" htmlfor="unit_price">Suggested Price</label>
-                    <input class="form-control" step="0.01"
-                           th:field="*{unit_price}" type="number">
+                    <input class="form-control" id="unit_price_input" step="0.01" th:field="*{unit_price}" type="text">
                 </div>
                 <div class="mb-3">
                     <select class="custom-select" th:field="*{category}">
@@ -103,7 +102,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" htmlfor="description">Description</label>
-                    <textarea th:field="*{description}" class="enlarged-textarea"></textarea>
+                    <textarea class="enlarged-textarea" th:field="*{description}"></textarea>
                 </div>
 
                 <input class="form-control" th:field="*{id_product}" type="hidden"/>
