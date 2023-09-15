@@ -12,4 +12,6 @@ public class Category {
     private int id_category;
     private String name;
     private String picture;
+
+
 }
