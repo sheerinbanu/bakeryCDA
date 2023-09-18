@@ -20,7 +20,9 @@ public class WebSecurityConfig {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    //In the context of BCryptPasswordEncoder, the SecureRandom instance is responsible for generating the random salt used during the password hashing process. This salt is then combined with the user's password before being passed to the bcrypt algorithm for hashing.
+    //In the context of BCryptPasswordEncoder, the SecureRandom instance
+    // is responsible for generating the random salt used during the password hashing process.
+    // This salt is then combined with the user's password before being passed to the bcrypt algorithm for hashing.
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         // BCryptPasswordEncoder with the provided version, strength, and SecureRandom instance

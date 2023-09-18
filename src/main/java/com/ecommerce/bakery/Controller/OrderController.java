@@ -24,4 +24,6 @@ public class OrderController {
         os.getDetailSelectionById(Id_order, model);
         return "orderDetailsPage";
     }
+
+
 }

@@ -90,7 +90,7 @@ public class CartService {
     }
 
 
-    public String submitCartForm(@ModelAttribute("cartForm") Cart cart, Order order, Selection selection, User user, Authentication authentication, Model model, BindingResult bindingResult) {
+   public String submitCartForm(@ModelAttribute("cartForm") Cart cart, Order order, Selection selection, User user, Authentication authentication, Model model, BindingResult bindingResult) {
         LocalDateTime myDateObj = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String formattedDate = myDateObj.format(myFormatObj);
@@ -108,6 +108,8 @@ public class CartService {
         order.setUser(user);
         order.setValidate(false);
         os.insertOrder(order);
-        return "redirect:/cart";
+        return "redirect:/orderHistory";
     }
+
+
 }
