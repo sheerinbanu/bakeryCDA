@@ -14,21 +14,7 @@ public class EmailValidationTests {
     public EmailValidation emailValidation() {
         return new EmailValidation();
     }
-   /* @Test
-    public  void testUsingStrictRegex1() {
-        String emailAddress = "username@xyz.com";
-        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
-                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-        assertTrue(EmailValidation.patternMatches(emailAddress, regexPattern));
-    }*/
 
-   /* @Test
-    public  void testUsingStrictRegex2() {
-        String emailAddress = "username@xyz.com";
-        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
-                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-        assertTrue(EmailValidation.patternMatches(emailAddress, regexPattern));
-    }*/
    @Test
    public void testGmailSpecialCase() {
        String emailAddress = "username@domain.com";

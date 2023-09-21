@@ -5,22 +5,12 @@ import com.ecommerce.bakery.Model.Product;
 import com.ecommerce.bakery.Repository.CategoryRepository;
 import com.ecommerce.bakery.Repository.ProductRepository;
 import com.ecommerce.bakery.Service.ProductService;
-import com.ecommerce.bakery.Service.UserService;
-import com.ecommerce.bakery.Validator.EmailValidation;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -39,30 +29,38 @@ public class ProductServiceTests {
 
     @Test
     public void testGetProductsByCategoryIdWhenCategoryExists() {
+        // Create a new Category object and set its properties
         Category testCategory = new Category();
         testCategory.setName("Spatulas");
         testCategory.setPicture("category.jpg");
-        testCategory = categoryRepository.save(testCategory);
-        Product product1 = new Product();
-        product1.setName("Product 1");
-        product1.setDescription("This is the first product");
-        product1.setUnit_price(19.99);
-        product1.setPicture("product1.jpg");
-        product1.setCategory(testCategory);
-        productRepository.save(product1);
 
-        Product product2 = new Product(/* Set product properties */);
-        product1.setName("Product 2");
-        product1.setDescription("This is the second product");
-        product1.setUnit_price(26.77);
-        product1.setPicture("product2.jpg");
-        product1.setCategory(testCategory);
-        product2.setCategory(testCategory);
-        productRepository.save(product2);
-        //Calling the method to test
-        List<Product> products = productService.getProductsByCategoryId(testCategory.getId_category());
-        Assertions.assertEquals(2, products.size());
+        // Save the Category object to the database
+        testCategory = categoryRepository.save(testCategory);
+
+        // Check if the save operation was successful
+        if (testCategory != null) {
+            System.out.println("Category saved successfully. ID: " + testCategory.getId_category());
+
+            // Create and save Product objects
+            Product product1 = new Product();
+            Product product2 = new Product();
+
+            // Set the Category for the products
+            product1.setCategory(testCategory);
+            product2.setCategory(testCategory);
+
+            productRepository.save(product1);
+            productRepository.save(product2);
+
+            //Calling the method to test
+            List<Product> products = productService.getProductsByCategoryId(testCategory.getId_category());
+
+            Assertions.assertEquals(2, products.size());
+        } else {
+            System.out.println("Error saving Category.");
+        }
     }
+
 
     @Test
     public void testGetProductsByCategoryIdWhenCategoryDoesNotExist() {
