@@ -19,7 +19,7 @@ public class AuthService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
     public void createNewUser(User user) {
-        // Remove any semicolons from the password before encoding
+        // Removing any semicolons from the password before encoding
         String password = removeSemicolons(user.getPassword());
         user.setPassword(bCryptPasswordEncoder.encode(password));
         Role role = Role.CLIENT;
@@ -27,7 +27,7 @@ public class AuthService {
         userRepository.save(user);
     }
     public void createNewAdmin(User user) {
-        // Remove any semicolons from the password before encoding
+        // Removing any semicolons from the password before encoding
         String password = removeSemicolons(user.getPassword());
         user.setPassword(bCryptPasswordEncoder.encode(password));
         Role role = Role.ADMIN;
