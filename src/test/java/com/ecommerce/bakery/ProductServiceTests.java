@@ -29,9 +29,9 @@ public class ProductServiceTests {
 
     @Test
     public void testGetProductsByCategoryIdWhenCategoryExists() {
-        // Create a new Category object and set its properties
+        // Creating a new Category object and setting its properties
         Category testCategory = new Category();
-        testCategory.setName("Spatulas");
+        testCategory.setName("anniversary");
         testCategory.setPicture("category.jpg");
 
         // Save the Category object to the database
@@ -41,9 +41,20 @@ public class ProductServiceTests {
         if (testCategory != null) {
             System.out.println("Category saved successfully. ID: " + testCategory.getId_category());
 
-            // Create and save Product objects
+            // Creating and saving Product objects
             Product product1 = new Product();
+            product1.setId_product(1);
+            product1.setName("Lorum ipsum");
+            product1.setDescription("Lorum Ipsum");
+            product1.setUnit_price(22.02);
+            product1.setPicture("product1.jpg");
+
             Product product2 = new Product();
+            product2.setId_product(2);
+            product2.setName("Lorum ipsum");
+            product2.setDescription("Lorum Ipsum");
+            product2.setUnit_price(10.09);
+            product2.setPicture("product2.jpg");
 
             // Set the Category for the products
             product1.setCategory(testCategory);
@@ -70,14 +81,14 @@ public class ProductServiceTests {
 
     @Test
     public void testGetProductsByCategoryIdWhenCategoryIsNull() {
-        // Set up a mock CategoryRepository that returns Optional.empty()
-        // This will simulate the case when the repository returns null
+        // Setting up a mock CategoryRepository that returns Optional.empty()
         Mockito.when(categoryRepository.findById(Mockito.anyInt())).thenReturn(Optional.empty());
 
-        // Call the method under test with any category ID
-        List<Product> products = productService.getProductsByCategoryId(1);
+        // Calling the method under test with any category ID
+        List<Product> products = productService.getProductsByCategoryId(99);
 
-        // Assert that an empty list is returned when the category is null
+        // Asserting that an empty list is returned when the category is null
         Assertions.assertEquals(Collections.emptyList(), products);
     }
+
 }

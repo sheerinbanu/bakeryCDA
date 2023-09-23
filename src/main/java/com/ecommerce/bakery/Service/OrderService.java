@@ -46,9 +46,9 @@ public class OrderService {
     public String getAllOrdersByUser(Authentication authentication, Model model) {
         int currentUserId = us.findByUsername(authentication.getName()).getId_user();
         ArrayList<Order> orderList = new ArrayList<Order>();
-        for (Order o : this.getAllOrder()) {
-            if (o.getUser().getId_user() == currentUserId) {
-                orderList.add(o);
+        for (Order order : this.getAllOrder()) {
+            if (order.getUser().getId_user() == currentUserId) {
+                orderList.add(order);
             }
         }
         model.addAttribute("orders", orderList);

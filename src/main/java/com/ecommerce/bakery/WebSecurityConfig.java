@@ -28,11 +28,29 @@ public class WebSecurityConfig {
         // BCryptPasswordEncoder with the provided version, strength, and SecureRandom instance
         return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2Y, 12, new SecureRandom());
     }
-    @Bean
+   /* @Bean
     SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(requests -> requests.requestMatchers("/", "/registration", "/css/**", "/js/**", "/images/**").permitAll().requestMatchers("/admin/**").hasAuthority("ADMIN").anyRequest().authenticated()).formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/allCategories", true).failureUrl("/login-error").permitAll()).logout(logout -> logout.permitAll());
         return http.build();
-    }
+    }*/
+   @Bean
+   SecurityFilterChain configure(HttpSecurity http) throws Exception {
+       http.authorizeHttpRequests(requests ->
+                       requests
+                               .requestMatchers("/paypal/pay").permitAll()
+                               .requestMatchers("/", "/registration", "/css/**", "/js/**", "/images/**").permitAll()
+                               .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                               .anyRequest().authenticated()
+               )
+               .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/allCategories", true).failureUrl("/login-error").permitAll())
+               .logout(logout -> logout.permitAll());
+
+       return http.build();
+   }
+
+
+
+
 
     @Autowired
     void configure(AuthenticationManagerBuilder builder) throws Exception {

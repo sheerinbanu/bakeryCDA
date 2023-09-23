@@ -32,7 +32,7 @@
                     <li class="nav-item dropdown">
                         <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
                            data-bs-toggle="dropdown"
-                           href="#" role="button" >Products</a>
+                           href="#" role="button">Products</a>
                         <div class="dropdown-menu">
                             <ul class="list-styled" th:each="category: ${categories}">
                                 <li><a class="dropdown-item"
@@ -50,7 +50,8 @@
                         <a class="nav-link" href="#">Contact</a>
                     </li>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="/orderHistory" style="color: mediumvioletred">Order History</a>
+                    <li class="nav-item"><a class="nav-link" href="/orderHistory" style="color: mediumvioletred">Order
+                        History</a>
                     </li>
                 </ul>
             </div>
@@ -78,7 +79,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="box">
-                        <div class="box-content" >
+                        <div class="box-content">
                             <div class="table-responsive">
                                 <table class="table shopping-cart-table">
                                     <thead>
@@ -113,16 +114,18 @@
                                         <td>
                                             <h6 th:text="${selection.total +' '+'&euro;'}"></h6>
                                         </td>
-                                        <td><div class="m-t-sm">
-                                            <a class="btn btn-primary pull-right"
-                                               th:href="@{'/cart/' + ${selection.id_selection}}"
-                                               type="submit" onclick="showPopup()"><i class="fa-solid fa-xmark"></i></a>
-                                        </div>
+                                        <td>
+                                            <div class="m-t-sm">
+                                                <a class="btn btn-primary pull-right"
+                                                   th:href="@{'/cart/' + ${selection.id_selection}}"
+                                                   type="submit" onclick="showPopup()"><i class="fa-solid fa-xmark"></i></a>
+                                            </div>
                                             <script>
                                                 function showPopup() {
                                                     alert("Are you sure to remove your selection?");
                                                 }
-                                            </script></td>
+                                            </script>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -131,7 +134,7 @@
                         <form class="form-sign-in" method="POST" th:action="@{/cart}" th:object="${cartForm}">
                             <input name="user" th:value="${person.id_user}" type="hidden">
                             <input name="total_price" th:value="${finalPrice}" type="hidden">
-                          </form>
+                        </form>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -144,33 +147,39 @@
                                 <div class="col">
                                     <span><b style="font-size: large; color: black;">Grand Total</b></span>
                                 </div>
-                                <div class="col" >
-                                    <h3 class="font-bold"  th:text="${finalPrice  +' '+'&euro;'}" style="color: red; text-align: center"></h3>
+                                <div class="col">
+                                    <h3 class="font-bold" th:text="${finalPrice  +' '+'&euro;'}"
+                                        style="color: red; text-align: center"></h3>
                                 </div>
                             </div>
                         </div>
                     </div>
-                            <hr>
-                            <span class="text-muted small"> *All prices are VAT excluded</span>
-                            <hr>
-                            <form class="form-sign-in" method="POST" th:action="@{/cart}" th:object="${cartForm}">
-                                <input name="user" th:value="${person.id_user}" type="hidden">
-                                <input name="total_price" th:value="${finalPrice}" type="hidden">
-                                <div class="m-t-sm">
-                                    <div class="btn-group">
-                                        <button class="btn btn-success btn-lg" type="submit">
-                                            <i class="fa fa-shopping-cart"></i> Place Order
-                                        </button>
-                                        <a class="btn btn-white btn-sm mt-lg-3 mt-md-0" href="/productGeneralPage"> <h6><b> Continue Shopping</b></h6></a>
-                                    </div>
+                    <hr>
+                    <span class="text-muted small"> *All prices are VAT excluded</span>
+                    <hr>
+                    <form class="form-sign-in" method="POST" th:action="@{/cart}" th:object="${cartForm}">
+                        <input name="user" th:value="${person.id_user}" type="hidden">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>;
+                        <input name="total_price" th:value="${finalPrice}" type="hidden">
+                        <div class="m-t-sm">
+                            <div class="row-cols-6 d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="/pay" class="btn btn-danger btn-lg">
+                                        Pay
+                                    </a>
                                 </div>
-                            </form>
+                                <a class="btn btn-white btn-sm" href="/productGeneralPage">
+                                    <h6><b>Continue Shopping</b></h6>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
+    </div>
     </div>
 </section>
 <script crossorigin="anonymous"
