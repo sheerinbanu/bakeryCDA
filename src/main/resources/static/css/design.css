@@ -88,4 +88,13 @@ button{
     max-width: 300px;
     margin: auto;
 }
+.btn-outline-secondary.custom-outline {
+  border-color: mediumvioletred;
+    color: mediumvioletred;
+
+}
+
+.btn-outline-secondary.custom-outline:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
 
