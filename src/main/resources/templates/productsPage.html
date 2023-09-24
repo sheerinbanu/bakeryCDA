@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <img height="100%" th:src="${product.picture}" width="100%"/>
+            <img th:style="'max-height: 100%; max-width: 100%; object-fit: contain;'" th:src="${product.picture}" />
             <div class="card-body">
                 <p class="card-text" th:text="${product.description}"></p>
             </div>
