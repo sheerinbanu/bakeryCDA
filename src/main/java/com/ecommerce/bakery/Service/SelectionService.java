@@ -10,11 +10,11 @@ import java.util.Optional;
 @Service
 public class SelectionService {
     @Autowired
-    private SelectionRepository ss;
+    private  SelectionRepository ss;
     public Optional<Selection> getSelection(final int id){
         return ss.findById(id);
     }
-    public Iterable<Selection> getAllSelection() {
+    public  Iterable<Selection> getAllSelection() {
         return ss.findAll();
     }
     public void deleteSelection(final int id) {

@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-
 import java.util.ArrayList;
 import java.util.Optional;
+
+
 
 @Service
 public class OrderService {
@@ -57,9 +58,9 @@ public class OrderService {
 
     public void getDetailSelectionById(int Id_order, Model model) {
         ArrayList<Selection> detailsList = new ArrayList<Selection>();
-        for (Selection s : ss.getAllSelection()) {
-            if (s.getCart() != null && (s.getCart().getId_cart() == Id_order)) {
-                detailsList.add(s);
+        for (Selection selection : ss.getAllSelection()) {
+            if (selection.getCart() != null && (selection.getCart().getId_cart() == Id_order)) {
+                detailsList.add(selection);
             }
         }
         model.addAttribute("details", detailsList);

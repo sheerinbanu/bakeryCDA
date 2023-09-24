@@ -91,9 +91,10 @@
                   th:object="${selectionForm}">
                 <div class="card-body">
                     <div class="form-group pb-3">
-                        <label htmlfor="name">Quantity</label>
+                        <label Htmlfor="name">Quantity</label>
                         <div class="d-flex">
-                            <input type="number" name="quantity" class="form-control"/>
+                            <input type="number" name="quantity" class="form-control"
+                                   oninput="preventNegativeInput(this)"/>
                             <button class="btn btn-sm btn-danger ms-2" type="submit">
                                 <i class="fa-solid fa-basket-shopping"></i>
                             </button>
