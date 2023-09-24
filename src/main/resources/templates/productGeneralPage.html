@@ -81,8 +81,7 @@
     <div class="row justify-content-center">
         <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
             <form id="logoutForm" method="POST" th:action="@{/logout}">
-                <input name="${_csrf.parameterName}" type="hidden"
-                       value="${_csrf.token}"/>
+                <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
             </form>
             <h2 style="text-align: center">
                 Hello
@@ -91,8 +90,17 @@
                 !
             </h2>
         </div>
+        <div class="col-6 mt-3 d-flex justify-content-end">
+            <div class="input-group" style="max-width: 250px;">
+                <input type="text" class="form-control" placeholder="Search Categories..." id="categorySearchInput">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" onclick="searchCategories()">Search</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
 <div class="container p-5">
     <div class="row justify-content-around">
         <div class="card mb-3" style="width: 18rem;" th:each="category: ${categories}">

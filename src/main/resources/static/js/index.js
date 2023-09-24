@@ -5,4 +5,14 @@
 }
 }
 
+function searchCategories() {
+    let input = document.getElementById('categorySearchInput');
+    let filter = input.value.toLowerCase();
+    let categories = document.getElementsByClassName('card');
+
+    for (let category of categories) {
+        let categoryName = category.querySelector('.card-title').textContent.toLowerCase();
+        category.style.display = categoryName.includes(filter) ? '' : 'none';
+    }
+}
 
