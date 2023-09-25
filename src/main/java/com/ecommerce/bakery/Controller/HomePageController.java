@@ -15,4 +15,9 @@ public class HomePageController {
     public String aboutPage(Model model) throws Exception{
         return "aboutPage";
     }
+
+    @GetMapping("/recipes")
+    public String recipes(Model model) throws Exception{
+        return "recipesPage";
+    }
 }
