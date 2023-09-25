@@ -11,5 +11,8 @@ public class HomePageController {
         return "homePage";
     }
 
-
+    @GetMapping("/about")
+    public String aboutPage(Model model) throws Exception{
+        return "aboutPage";
+    }
 }
