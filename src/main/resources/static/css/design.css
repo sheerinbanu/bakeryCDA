@@ -1,3 +1,4 @@
+
 #loginHover:hover{
     color:darkslategray;
 }
@@ -97,4 +98,64 @@ button{
 .btn-outline-secondary.custom-outline:focus {
     box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
 }
+
+/* MEDIA QUERIES styles for all screen sizes */
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header styles */
+header {
+
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Navigation styles */
+nav {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+
+    text-decoration: none;
+}
+
+/* Content styles */
+.main-content {
+    margin-bottom: 20px;
+}
+
+/* Footer styles */
+footer {
+
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Additional styles for links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 

@@ -20,4 +20,9 @@ public class HomePageController {
     public String recipes(Model model) throws Exception{
         return "recipesPage";
     }
+
+    @GetMapping("/contact")
+    public String contact(Model model) throws Exception{
+        return "contactPage";
+    }
 }

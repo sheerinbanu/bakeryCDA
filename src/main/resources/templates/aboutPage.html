@@ -12,13 +12,6 @@
         body {
             font-family: 'Arial', sans-serif;
         }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-        }
-
         h1 {
             font-size: 2em;
         }
@@ -57,11 +50,6 @@
             margin: 0 auto;
             border-radius: 10px;
         }
-
-        footer {
-            text-align: center;
-            margin-top: 30px;
-        }
     </style>
 </head>
 <body>
@@ -89,7 +77,7 @@
                            data-bs-toggle="dropdown"
                            href="#" role="button">Products</a>
                         <div class="dropdown-menu">
-                            <ul class="list-unstyled" th:each="category: ${categories}">
+                            <ul class="list-styled" th:each="category: ${categories}">
                                 <li><a class="dropdown-item"
                                        th:href="@{/showProductsByCategory/{categoryId}(categoryId=${category.id_category})}"
                                        th:text="${category.name}"></a></li>
@@ -135,11 +123,26 @@
     </nav>
 </header>
 <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
+            <form id="logoutForm" method="POST" th:action="@{/logout}">
+                <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+            </form>
+            <h2 style="text-align: center">
+                Hello
+                <span sec:authorize="isAuthenticated()"></span>
+                <span sec:authentication="name" style="color: mediumvioletred "></span>
+                !
+            </h2>
+        </div>
+    </div>
+</div>
+<div class="container">
     <div class="row">
         <div class="col-md-6">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h2 class="card-title text-center"style="color: mediumvioletred">Our Story</h2>
+                    <h2 class="card-title text-center" style="color: mediumvioletred">Our Story</h2>
                     <p class="card-text">Welcome to Bakery! We're passionate about helping you create delicious pastries
                         and cakes right in your own kitchen. Our journey began with a shared love for baking and a
                         vision to provide high-quality ingredients and accessories to aspiring bakers.Lorem ipsum dolor
@@ -155,7 +158,7 @@
             </div>
             <div class="card mb-4">
                 <div class="card-body">
-                    <h2 class="card-title text-center"style="color: mediumvioletred">Our Products</h2>
+                    <h2 class="card-title text-center" style="color: mediumvioletred">Our Products</h2>
                     <p class="card-text">Explore our wide range of pastry accessories, from precision baking tools to
                         decorative molds, all designed to elevate your baking experience. Our selection of premium
                         cooking chocolates ensures that you have the finest ingredients at your fingertips for crafting
@@ -168,7 +171,7 @@
         <div class="col-md-6">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h2 class="card-title text-center"style="color: mediumvioletred">Our Mission</h2>
+                    <h2 class="card-title text-center" style="color: mediumvioletred">Our Mission</h2>
                     <p class="card-text">At Bakery, we believe that everyone can be a pastry chef in their own home.
                         We're committed to providing you with the resources and tools you need to unleash your inner
                         baker and create mouthwatering masterpieces.Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -181,7 +184,7 @@
             </div>
             <div class="card mb-4">
                 <div class="card-body">
-                    <h2 class="card-title text-center"style="color: mediumvioletred">Meet the Team</h2>
+                    <h2 class="card-title text-center" style="color: mediumvioletred">Meet the Team</h2>
                     <p class="card-text">Our team is composed of experienced pastry chefs, chocolatiers, and culinary
                         enthusiasts who are dedicated to bringing you the best in baking. We're here to support you on
                         your baking journey, from offering expert advice to sharing creative ideas.Lorem ipsum dolor sit
@@ -222,14 +225,14 @@
         </div>
     </div>
 </div>
-    <footer>
-        <div class="container-fluid text-center p-3" style="background-color:rgb(70,51,47);">
-            © 2020 Copyright:
-            <a class="text-light" href="https://mdbootstrap.com/">BAKERY.com</a>
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0-alpha1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-xS5pHbC6zBc5f3YvS2ww2JYm9RriD3dATkBytN8DeaW6mIzAN5alGgDxmjkkIt5F"
-            crossorigin="anonymous"></script>
-    </body>
-    </html>
+<footer>
+    <div class="container-fluid text-center p-3" style="background-color:rgb(70,51,47);">
+        © 2020 Copyright:
+        <a class="text-light" href="https://mdbootstrap.com/">BAKERY.com</a>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-xS5pHbC6zBc5f3YvS2ww2JYm9RriD3dATkBytN8DeaW6mIzAN5alGgDxmjkkIt5F"
+        crossorigin="anonymous"></script>
+</body>
+</html>

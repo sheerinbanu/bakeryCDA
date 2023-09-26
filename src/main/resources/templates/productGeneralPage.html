@@ -34,7 +34,7 @@
                            data-bs-toggle="dropdown"
                            href="#" role="button">Products</a>
                         <div class="dropdown-menu">
-                            <ul class="list-unstyled" th:each="category: ${categories}">
+                            <ul class="list-styled" th:each="category: ${categories}">
                                 <li><a class="dropdown-item"
                                        th:href="@{/showProductsByCategory/{categoryId}(categoryId=${category.id_category})}"
                                        th:text="${category.name}"></a></li>
