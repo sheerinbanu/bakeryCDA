@@ -18,11 +18,11 @@ public class PayPalService {
     private APIContext apiContext;
 
    public Payment createPayment(Cart cart, String cancelUrl, String successUrl) throws PayPalRESTException {
-       // Step 1: Retrieve necessary information from the Cart
-       double totalAmount = cart.getTotal_price(); // Assuming this is the total price of items in the cart
+       // Retrieve necessary information from the Cart
+       double totalAmount = cart.getTotal_price();
        String currency = "EUR";
 
-       // Step 2: Create PayPal Amount and Transaction
+       // Create PayPal Amount and Transaction
        Amount amount = new Amount();
        amount.setCurrency(currency);
        amount.setTotal(String.format("%.2f", totalAmount));
