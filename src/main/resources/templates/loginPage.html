@@ -75,6 +75,8 @@
                 </div>
                 <!-- Login Form -->
                 <form class="form-sign-in" method="POST" th:action="@{/login}">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
                     <div style="display: flex; justify-content: center; align-items: center;">
                         <p th:if="${loginError}" class="error" style="color: red;text-align: center;">Wrong username or
                             password !</p></div>
