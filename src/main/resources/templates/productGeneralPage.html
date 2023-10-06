@@ -37,7 +37,7 @@
                             <ul class="list-styled" th:each="category: ${categories}">
                                 <li><a class="dropdown-item"
                                        th:href="@{/showProductsByCategory/{categoryId}(categoryId=${category.id_category})}"
-                                       th:text="${category.name}"></a></li>
+                                       th:utext="${category.name}"></a></li>
                             </ul>
                         </div>
                     </li>
