@@ -110,6 +110,4 @@ public class CartService {
         os.insertOrder(order);
         return "redirect:/orderHistory";
     }
-
-
 }

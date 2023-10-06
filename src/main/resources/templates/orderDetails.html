@@ -32,7 +32,7 @@
                     <li class="nav-item dropdown">
                         <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
                            data-bs-toggle="dropdown"
-                           href="#" role="button" >Products</a>
+                           href="#" role="button">Products</a>
                         <div class="dropdown-menu">
                             <ul class="list-styled" th:each="category: ${categories}">
                                 <li><a class="dropdown-item"
@@ -103,10 +103,10 @@
                     <tbody th:each="detail: ${details}">
                     <tr>
                         <th scope="row" th:text="${detail.cart.id_cart}"></th>
-                        <td th:text="${detail.product.name}"></td>
-                        <td th:text="${detail.product.category.name}"></td>
-                        <td th:text="${detail.quantity}"></td>
-                        <td th:text="${'&euro;' +' '+ detail.unit_price}"></td>
+                        <td th:utext="${detail.product.name}"></td>
+                        <td th:utext="${detail.product.category.name}"></td>
+                        <td th:utext="${detail.quantity}"></td>
+                        <td th:utext="${'&euro;' +' '+ detail.unit_price}"></td>
                     </tr>
                     </tbody>
                 </table>

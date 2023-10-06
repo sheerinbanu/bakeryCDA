@@ -14,9 +14,9 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin/orders">Bakery Management Pro.</a>
             <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
-                    class="navbar-toggler"
+                    class="navbar-toggle"
                     data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggle-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
@@ -79,13 +79,13 @@
             <form th:action="@{/admin/addCategory}" th:object="${category}"
                   method="POST">
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">New Category Name</label>
+                    <label htmlfor="exampleInputPassword1" class="form-label">New Category Name</label>
                     <input type="text" th:field="*{name}" class="form-control"
                            placeholder="Outdoor"/> <input type="hidden"
                                                            th:field="*{id_category}" class="form-control"/>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="url">Photo URL</label>
+                    <label class="form-label" htmlfor="url">Photo URL</label>
                     <input class="form-control" th:field="*{picture}" type="text"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>

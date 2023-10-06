@@ -15,9 +15,9 @@
         <div class="container-fluid">
             <img height="50px" src="../images/bakeLogo.PNG" width="50px">
             <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
-                    class="navbar-toggler"
+                    class="navbar-toggle"
                     data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggle-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
@@ -101,7 +101,7 @@
                            type="password">
                     <span class="has-error" th:errors="*{passwordConfirm}" th:if="${#fields.hasErrors('passwordConfirm')}"></span>
                 </div>
-                <div th:if="${message}" th:text="${message}" style="color: green;"></div>
+                <div th:if="${message}" th:utext="${message}" style="color: green;"></div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
             </form>
         </div>

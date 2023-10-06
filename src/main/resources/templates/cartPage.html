@@ -15,9 +15,9 @@
         <div class="container-fluid">
             <img alt="cake" height="50px" src="../images/bakeLogo.PNG" width="50px">
             <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
-                    class="navbar-toggler"
+                    class="navbar-toggle"
                     data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggle-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
@@ -37,7 +37,7 @@
                             <ul class="list-styled" th:each="category: ${categories}">
                                 <li><a class="dropdown-item"
                                        th:href="@{/showProductsByCategory/{categoryId}(categoryId=${category.id_category})}"
-                                       th:text="${category.name}"></a></li>
+                                       th:utext="${category.name}"></a></li>
                             </ul>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/allCategories">All categories</a>
@@ -62,7 +62,6 @@
         </button>
     </nav>
 </header>
-<body>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6 mt-3" sec:authorize="isAuthenticated()">
@@ -103,22 +102,22 @@
                                         <td class="desc">
                                             <h6>
                                                 <a class="text-navy" href="#"
-                                                   th:text="${selection.product.name}"></a>
+                                                   th:utext="${selection.product.name}"></a>
                                             </h6>
                                         </td>
                                         <td>
-                                            <h6 th:text="${selection.product.unit_price}"></h6>
+                                            <h6 th:utext="${selection.product.unit_price}"></h6>
                                         </td>
                                         <td><input class="form-control"
                                                    disabled th:value="${selection.quantity}"></td>
                                         <td>
-                                            <h6 th:text="${selection.total +' '+'&euro;'}"></h6>
+                                            <h6 th:utext="${selection.total +' '+'&euro;'}"></h6>
                                         </td>
                                         <td>
                                             <div class="m-t-sm">
                                                 <a class="btn btn-primary pull-right"
                                                    th:href="@{'/cart/' + ${selection.id_selection}}"
-                                                   type="submit" onclick="showPopup()"><i class="fa-solid fa-xmark"></i></a>
+                                                   type="submit" onclick="showPopup()"><i class="fa-solid fa-mark"></i></a>
                                             </div>
                                             <script>
                                                 function showPopup() {
@@ -159,14 +158,12 @@
                     <hr>
                     <form class="form-sign-in" method="POST" th:action="@{/cart}" th:object="${cartForm}">
                         <input name="user" th:value="${person.id_user}" type="hidden">
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>;
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                         <input name="total_price" th:value="${finalPrice}" type="hidden">
                         <div class="m-t-sm">
                             <div class="row-cols-6 d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a href="/pay" class="btn btn-danger btn-lg">
-                                        Pay
-                                    </a>
+                                    <button type="submit" class="btn btn-success btn-lg">Order</button>
                                 </div>
                                 <a class="btn btn-white btn-sm" href="/productGeneralPage">
                                     <h6><b>Continue Shopping</b></h6>
@@ -174,6 +171,11 @@
                             </div>
                         </div>
                     </form>
+                    <div class="btn-group">
+                        <a href="/pay" class="btn btn-danger btn-lg">
+                            Pay
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -78,19 +78,19 @@
         <div class="col-6">
             <form method="POST" th:action="@{'/admin/updateUser/' + ${user.get().getId_user}}" th:object="${user}">
                 <div class="mb-3">
-                    <label class="form-label" for="last_name">Name</label>
+                    <label class="form-label" HTMLfor="last_name">Name</label>
                     <input class="form-control" th:field="*{last_name}" type="text"/>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="first_name">FirstName</label>
+                    <label class="form-label" HTMLfor="first_name">FirstName</label>
                     <input class="form-control" th:field="*{first_name}" type="text"/>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="email">Email</label>
+                    <label class="form-label" HTMLfor="email">Email</label>
                     <input class="form-control" th:field="*{email}" type="text"/>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="email">Username</label>
+                    <label class="form-label" HTMLfor="email">Username</label>
                     <input class="form-control" th:field="*{username}" type="text"/>
                 </div>
                 <input th:field="*{id_user}" type="hidden"/>

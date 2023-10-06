@@ -14,9 +14,9 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin/orders">Bakery Management Pro.</a>
             <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
-                    class="navbar-toggler"
+                    class="navbar-toggle"
                     data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggle-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
@@ -82,11 +82,11 @@
                 <th><input class="form-check-input" id="flexCheckDefault" type="checkbox"
                            value=""><label class="form-check-label"
                                            for="flexCheckDefault"> </label></th>
-                <td th:text="${user.id_user}">...</td>
-                <td th:text="${user.last_name}">...</td>
-                <td th:text="${user.first_name}">...</td>
-                <td th:text="${user.email}">...</td>
-                <td th:text="${user.username}">...</td>
+                <td th:utext="${user.id_user}">...</td>
+                <td th:utext="${user.last_name}">...</td>
+                <td th:utext="${user.first_name}">...</td>
+                <td th:utext="${user.email}">...</td>
+                <td th:utext="${user.username}">...</td>
                 <td><a class="btn btn-success"
                        role="button" th:href="@{'/admin/updateUser/'+${user.id_user}}">&#9999</a></td>
                 <td><a class="btn btn-outline-warning"

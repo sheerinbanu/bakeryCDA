@@ -37,7 +37,7 @@
                         <ul class="list-styled" th:each="category: ${categories}">
                             <li><a class="dropdown-item"
                                    th:href="@{/showProductsByCategory/{categoryId}(categoryId=${category.id_category})}"
-                                   th:text="${category.name}"></a></li>
+                                   th:utext="${category.name}"></a></li>
                         </ul>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/allCategories">All categories</a>
@@ -85,17 +85,17 @@
 <div class="container py-5">
     <div class="row justify-content-around">
         <div class="card mb-3" style="width: 18rem;" th:each="product: ${products}">
-            <h3 class="card-header" th:text="${product.name}"></h3>
+            <h3 class="card-header" th:utext="${product.name}"></h3>
             <div class="card-body">
                 <div class="row justify-content-start">
                     <div class="col-6">
-                        <b th:text="${product.unit_price +' '+ '&euro;'}" style="font-size: large; color: black;"></b>
+                        <b th:utext="${product.unit_price +' '+ '&euro;'}" style="font-size: large; color: black;"></b>
                     </div>
                 </div>
             </div>
-            <img th:style="'max-height: 100%; max-width: 100%; object-fit: contain;'" th:src="${product.picture}" />
+            <img th:style="'max-height: 100%; max-width: 100%; object-fit: contain;'" th:src="${product.picture}"/>
             <div class="card-body">
-                <p class="card-text" th:text="${product.description}"></p>
+                <p class="card-text" th:utext="${product.description}"></p>
             </div>
             <form class="form-sign-in" method="POST" th:action="@{/showProductsByCategory/{categoryId}}"
                   th:object="${selectionForm}">

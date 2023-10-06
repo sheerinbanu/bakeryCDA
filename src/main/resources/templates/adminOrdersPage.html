@@ -14,9 +14,9 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin/orders">Bakery Management Pro.</a>
             <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
-                    class="navbar-toggler"
+                    class="navbar-toggle"
                     data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggle-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
@@ -76,15 +76,16 @@
                 </thead>
                 <tbody>
                 <tr class="table-active" th:each="order: ${orders}">
-                    <td th:text="${order.id_order}"></td>
-                    <td th:text="${order.order_date}"></td>
-                    <td th:text="${order.user.username}"></td>
-                    <td th:text="${order.user.email}"></td>
-                    <td th:text="${'&euro;' +' '+ order.cart.total_price}"></td>
+                    <td th:utext="${order.id_order}"></td>
+                    <td th:utext="${order.order_date}"></td>
+                    <td th:utext="${order.user.username}"></td>
+                    <td th:utext="${order.user.email}"></td>
+                    <td th:utext="${'&euro;' +' '+ order.cart.total_price}"></td>
                     <td>
-                        <a class="btn btn-warning" role="button" th:href="@{'/admin/orders/' + ${order.id_order}}">See</a>
+                        <a class="btn btn-warning" role="button"
+                           th:href="@{'/admin/orders/' + ${order.id_order}}">See</a>
                     </td>
-                    <td th:text="${order.validate} ? 'PROCESSED' : 'TO BE VERIFIED'"></td>
+                    <td th:utext="${order.validate} ? 'PROCESSED' : 'TO BE VERIFIED'"></td>
                     <td>
                         <div>
                             <form class="form-sign-in" method="POST" th:action="@{/admin/orders}">
@@ -100,7 +101,6 @@
         </div>
     </div>
 </section>
-
 <script crossorigin="anonymous"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

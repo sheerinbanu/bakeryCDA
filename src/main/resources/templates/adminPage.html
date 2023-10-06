@@ -14,9 +14,9 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin/orders">Bakery Management Pro.</a>
             <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
-                    class="navbar-toggler"
+                    class="navbar-toggle"
                     data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggle-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
@@ -78,7 +78,7 @@
                     <input autofocus="true" class="form-control" placeholder="Email" th:field="*{email}" type="text">
                 </div>
                 <div class="form-group mb-3">
-                    <option th:text="Administator" th:value="'administrator'"></option>
+                    <option th:utext="Administator" th:value="'administrator'"></option>
                     </select>
                 </div>
                 <div class="form-group mb-3">

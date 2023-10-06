@@ -31,12 +31,12 @@
                 <li class="nav-item dropdown">
                     <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
                        data-bs-toggle="dropdown"
-                       href="#" role="button" >Products</a>
+                       href="#" role="button">Products</a>
                     <div class="dropdown-menu">
                         <ul class="list-styled" th:each="category: ${categories}">
                             <li><a class="dropdown-item"
                                    th:href="@{/showProductsByCategory/{categoryId}(categoryId=${category.id_category})}"
-                                   th:text="${category.name}"></a></li>
+                                   th:utext="${category.name}"></a></li>
                         </ul>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/productGeneralPage">All categories</a>
@@ -92,9 +92,10 @@
                     <div class="card-body text-center">
                         <img
                                 alt="avatar"
-                                class="rounded-circle img-fluid" src="https://t4.ftcdn.net/jpg/03/76/14/95/240_F_376149573_4IjbehMnJ1norK4yfWiFEmFrI3TmQf1K.jpg"
+                                class="rounded-circle img-fluid"
+                                src="https://t4.ftcdn.net/jpg/03/76/14/95/240_F_376149573_4IjbehMnJ1norK4yfWiFEmFrI3TmQf1K.jpg"
                                 style="width: 150px;">
-                        <h5 class="my-3" th:text="${person.first_name}"></h5>
+                        <h5 class="my-3" th:utext="${person.first_name}"></h5>
                         <p class="text-muted mb-4">E.U Operating Area</p>
                     </div>
                 </div>
@@ -159,31 +160,31 @@
                                     Personal Bonus(Feature)
                                 </p>
                                 <p class="mb-1" style="font-size: .77rem;">Number of Order
-                                    </p>
+                                </p>
                                 <div class="progress rounded" style="height: 5px;">
                                     <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="80"
                                          class="progress-bar" role="progressbar" style="width: 0%"></div>
                                 </div>
                                 <p class="mt-4 mb-1" style="font-size: .77rem;">Revenue Figure
-                                    </p>
+                                </p>
                                 <div class="progress rounded" style="height: 5px;">
                                     <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="72"
                                          class="progress-bar" role="progressbar" style="width: 0%"></div>
                                 </div>
                                 <p class="mt-4 mb-1" style="font-size: .77rem;">Total quantity of orders
-                                    </p>
+                                </p>
                                 <div class="progress rounded" style="height: 5px;">
                                     <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="89"
                                          class="progress-bar" role="progressbar" style="width: 0%"></div>
                                 </div>
                                 <p class="mt-4 mb-1" style="font-size: .77rem;">Frequently ordered Reference
-                                    </p>
+                                </p>
                                 <div class="progress rounded" style="height: 5px;">
                                     <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="55"
                                          class="progress-bar" role="progressbar" style="width: 0%"></div>
                                 </div>
                                 <p class="mt-4 mb-1" style="font-size: .77rem;">Last Order
-                                     in date</p>
+                                    in date</p>
                                 <div class="progress rounded mb-2" style="height: 5px;">
                                     <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="66"
                                          class="progress-bar" role="progressbar" style="width: 0%"></div>
@@ -199,7 +200,7 @@
                                     GROUPE DATA 2023.
                                 </p>
                                 <p class="mb-1" style="font-size: .77rem;">
-                                     client Profit rate</p>
+                                    client Profit rate</p>
                                 <div class="progress rounded" style="height: 5px;">
                                     <div aria-valuemax="100" aria-valuemin="0"
                                          aria-valuenow="80" class="progress-bar" role="progressbar"
@@ -227,7 +228,7 @@
                                          style="width: 30%"></div>
                                 </div>
                                 <p class="mt-4 mb-1" style="font-size: .77rem;">
-                                     Sales Percentage in E.U</p>
+                                    Sales Percentage in E.U</p>
                                 <div class="progress rounded mb-2" style="height: 5px;">
                                     <div aria-valuemax="100" aria-valuemin="0"
                                          aria-valuenow="66" class="progress-bar" role="progressbar"
